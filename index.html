@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="theme-color" content="#E61919"/>
+  <meta name="theme-color" content="#ffbb08"/>
   <meta name="description" content="Centro Educativo y Artístico Johann Sebastian Bach — Chilpancingo, Guerrero. Guitarra, piano, canto, batería, violín."/>
   <meta property="og:title" content="CEART — Centro Educativo y Artístico"/>
   <meta property="og:description" content="Escuela de música en Chilpancingo, Guerrero. Cinco programas, maestros dedicados."/>
   <meta property="og:type" content="website"/>
-  <meta property="og:image" content="assets/logo.jpg"/>
+  <meta property="og:image" content="Ceart imagenes/logo.jpeg"/>
   <title>CEART — Centro Educativo y Artístico</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="icon" href="assets/logo.jpg" type="image/jpeg"/>
+  <link rel="icon" href="Ceart imagenes/logo.jpeg" type="image/jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -25,15 +25,15 @@
    TOKENS — SWISS INDUSTRIAL PRINT
 ═══════════════════════════════════════ */
 :root{
-  --canvas:#EAE8E3;
-  --canvas-2:#DDDBD6;
-  --ink:#0A0A09;
-  --ink-mid:#3A3835;
-  --ink-faint:#7A786F;
-  --red:#E61919;
+  --canvas:#fffcfc;
+  --canvas-2:#f5f3f3;
+  --ink:#010101;
+  --ink-mid:#1a1a1a;
+  --ink-faint:#6b6b6b;
+  --accent:#ffbb08;
   --rule:1px solid var(--ink);
   --rule-h:2px solid var(--ink);
-  --rule-r:3px solid var(--red);
+  --rule-r:3px solid var(--accent);
   --mono:'JetBrains Mono',monospace;
   --display:'Archivo Black',sans-serif;
   --e:cubic-bezier(.32,.72,0,1);
@@ -75,7 +75,7 @@ body{
   color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;
   display:flex;align-items:center;gap:12px;
 }
-.nav-id::before{content:'[ SYS ]';color:var(--red);font-size:9px}
+.nav-id::before{content:'[ SYS ]';color:var(--accent);font-size:9px}
 .nav-links{
   display:flex;align-items:center;gap:0;
   border-left:1px solid rgba(255,255,255,.1);
@@ -90,13 +90,13 @@ body{
   transition:color .15s,background .15s;
 }
 .nav-a:last-child{border-right:none}
-.nav-a:hover,.nav-a.active{color:#fff;background:rgba(255,255,255,.06)}
+.nav-a:hover,.nav-a.active{color:#fffcfc;background:rgba(255,187,8,.12)}
 .nav-r{
   display:flex;justify-content:flex-end;
 }
 .nav-cta{
   font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  padding:8px 18px;background:var(--red);color:#fff;
+  padding:8px 18px;background:var(--accent);color:#fff;
   text-decoration:none;border:none;cursor:pointer;
   transition:opacity .15s;white-space:nowrap;
 }
@@ -135,8 +135,8 @@ body{
   display:flex;flex-direction:column;gap:3px;
 }
 .hero-meta-cell strong{color:var(--ink);font-weight:700;font-size:10px}
-.hero-meta-cell.red-cell{background:var(--red)}
-.hero-meta-cell.red-cell,.hero-meta-cell.red-cell strong{color:#fff}
+.hero-meta-cell.accent-cell{background:var(--accent)}
+.hero-meta-cell.accent-cell,.hero-meta-cell.accent-cell strong{color:#fff}
 
 /* main hero body */
 .hero-body{
@@ -152,7 +152,7 @@ body{
   font-size:9px;font-weight:700;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase;
   display:flex;align-items:center;gap:10px;margin-bottom:32px;
 }
-.hero-label::before{content:'';display:block;width:24px;height:1px;background:var(--red)}
+.hero-label::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
 h1{
   font-family:var(--display);
   font-size:clamp(96px,17vw,220px);
@@ -240,8 +240,8 @@ h1{
   gap:1px;background:var(--ink);
 }
 .hero-foot>*{background:var(--canvas);padding:10px 16px;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center}
-.hf-ref::before{content:'REF//';margin-right:6px;color:var(--red);font-size:8px}
-.hf-sch{color:var(--red);font-weight:700;justify-content:flex-end}
+.hf-ref::before{content:'REF//';margin-right:6px;color:var(--accent);font-size:8px}
+.hf-sch{color:var(--accent);font-weight:700;justify-content:flex-end}
 
 /* ═══════════════════════════════════════
    TICKER / DATA STREAM
@@ -262,7 +262,7 @@ h1{
   font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(255,255,255,.3);
 }
-.tick-sep{color:var(--red);font-size:11px}
+.tick-sep{color:var(--accent);font-size:11px}
 
 /* ═══════════════════════════════════════
    SECTION COMMON
@@ -275,7 +275,7 @@ h1{
 }
 .sec-header>*{background:var(--canvas);padding:14px 20px;display:flex;align-items:center}
 .sec-idx{
-  font-size:9px;font-weight:700;color:var(--red);letter-spacing:.1em;
+  font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.1em;
   justify-content:center;text-align:center;border-right:var(--rule);font-family:var(--mono);
 }
 .sec-title{
@@ -313,7 +313,7 @@ h1{
   border-top:var(--rule);
 }
 .pgm-num{
-  font-size:8px;font-weight:700;color:var(--red);letter-spacing:.14em;margin-bottom:10px;display:block;
+  font-size:8px;font-weight:700;color:var(--accent);letter-spacing:.14em;margin-bottom:10px;display:block;
 }
 .pgm-name{
   font-family:var(--display);font-size:clamp(20px,2.2vw,28px);
@@ -325,43 +325,43 @@ h1{
   margin-top:16px;height:1px;background:var(--ink);overflow:hidden;
 }
 .pgm-fill{
-  height:100%;width:0;background:var(--red);transition:width .8s var(--e);
+  height:100%;width:0;background:var(--accent);transition:width .8s var(--e);
 }
 .pgm-cell:hover .pgm-fill{width:100%}
 
 /* ═══════════════════════════════════════
    MANIFESTO
 ═══════════════════════════════════════ */
-#manifesto{background:var(--ink);border-bottom:var(--rule-r)}
+#manifesto{background:#010101;border-bottom:var(--rule-r)}
 .mf-wrap{
   max-width:1060px;margin:0 auto;
   padding:clamp(56px,8vw,100px) 24px;
-  display:grid;grid-template-columns:80px 1fr;gap:1px;background:rgba(255,255,255,.06);
+  display:grid;grid-template-columns:80px 1fr;gap:1px;background:rgba(255,187,8,.08);
 }
 .mf-marker{
   display:flex;flex-direction:column;align-items:center;
   padding:0 0;gap:8px;
   padding-top:4px;
 }
-.mf-marker-line{width:1px;height:100%;background:rgba(255,255,255,.1)}
+.mf-marker-line{width:1px;height:100%;background:rgba(255,187,8,.15)}
 .mf-marker-lbl{
-  font-size:8px;font-weight:700;color:var(--red);letter-spacing:.12em;
+  font-size:8px;font-weight:700;color:var(--accent);letter-spacing:.12em;
   text-transform:uppercase;writing-mode:vertical-rl;letter-spacing:.14em;
 }
 .mf-body{padding:0 0 0 32px}
 .mf-tag{
-  font-size:9px;font-weight:700;color:rgba(255,255,255,.22);
+  font-size:9px;font-weight:700;color:rgba(255,187,8,.35);
   letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:28px;
 }
 .mf-q{
   font-family:var(--display);
   font-size:clamp(28px,5vw,66px);
   line-height:.9;letter-spacing:-.02em;text-transform:uppercase;
-  color:rgba(255,255,255,.88);
+  color:rgba(255,252,252,.92);
   margin-bottom:32px;
 }
-.mf-q span{color:var(--red)}
-.mf-attr{font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.14em;text-transform:uppercase}
+.mf-q span{color:var(--accent)}
+.mf-attr{font-size:9px;color:rgba(255,187,8,.35);letter-spacing:.14em;text-transform:uppercase}
 
 /* ═══════════════════════════════════════
    GALERÍA
@@ -408,7 +408,7 @@ h1{
   text-transform:uppercase;letter-spacing:-.02em;line-height:.9;
   margin-bottom:28px;
 }
-.acc-copy h2 span{color:var(--red)}
+.acc-copy h2 span{color:var(--accent)}
 .acc-lead{font-size:11px;color:var(--ink-faint);line-height:1.75;letter-spacing:.04em;margin-bottom:40px;max-width:380px}
 .feat-list{display:flex;flex-direction:column;gap:0;margin-bottom:40px;border:var(--rule)}
 .feat-row{
@@ -420,7 +420,7 @@ h1{
 .feat-ico{
   display:flex;align-items:center;justify-content:center;
   border-right:var(--rule);
-  color:var(--red);
+  color:var(--accent);
 }
 .feat-ico svg{width:16px;height:16px}
 .feat-t{font-size:10px;font-weight:700;color:var(--ink);display:block;margin-bottom:2px;letter-spacing:.06em;text-transform:uppercase}
@@ -463,7 +463,7 @@ h1{
 .pp-cta{border:var(--rule);border-top:none}
 .pp-cta a{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  padding:16px;background:var(--red);
+  padding:16px;background:var(--accent);
   font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:#fff;text-decoration:none;
   transition:opacity .15s;
@@ -474,47 +474,47 @@ h1{
 /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
-footer{background:var(--ink);border-top:var(--rule-r)}
+footer{background:#010101;border-top:var(--rule-r)}
 .ft-manifest{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  gap:1px;background:rgba(255,187,8,.06);
+  border-bottom:1px solid rgba(255,187,8,.08);
 }
 .ft-col{
-  background:var(--ink);padding:36px 24px;
+  background:#010101;padding:36px 24px;
 }
 .ft-col-hd{
-  font-size:8px;font-weight:700;color:rgba(255,255,255,.2);
+  font-size:8px;font-weight:700;color:rgba(255,187,8,.25);
   letter-spacing:.16em;text-transform:uppercase;
   display:block;margin-bottom:18px;padding-bottom:10px;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,187,8,.1);
 }
 .ft-brand-name{
   font-family:var(--display);font-size:28px;
   text-transform:uppercase;letter-spacing:-.02em;
-  color:#fff;line-height:.9;margin-bottom:12px;
+  color:#fffcfc;line-height:.9;margin-bottom:12px;
 }
-.ft-brand-sub{font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.12em;text-transform:uppercase;line-height:1.7}
+.ft-brand-sub{font-size:9px;color:rgba(255,187,8,.25);letter-spacing:.12em;text-transform:uppercase;line-height:1.7}
 .ft-col a{
-  display:block;color:rgba(255,255,255,.35);text-decoration:none;
+  display:block;color:rgba(255,187,8,.45);text-decoration:none;
   font-size:10px;letter-spacing:.06em;text-transform:uppercase;
   margin-bottom:8px;transition:color .15s;
 }
-.ft-col a:hover{color:rgba(255,255,255,.85)}
-.ft-data p{font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.08em;margin-bottom:6px;line-height:1.6;text-transform:uppercase}
-.ft-data strong{color:rgba(255,255,255,.45)}
+.ft-col a:hover{color:rgba(255,187,8,.85)}
+.ft-data p{font-size:9px;color:rgba(255,187,8,.3);letter-spacing:.08em;margin-bottom:6px;line-height:1.6;text-transform:uppercase}
+.ft-data strong{color:rgba(255,187,8,.55)}
 
 .ft-bottom{
   display:grid;grid-template-columns:1fr auto 1fr;
-  gap:1px;background:rgba(255,255,255,.06);
+  gap:1px;background:rgba(255,187,8,.05);
 }
 .ft-bottom>*{
-  background:var(--ink);padding:12px 24px;
+  background:#010101;padding:12px 24px;
   font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.2);display:flex;align-items:center;
+  color:rgba(255,187,8,.25);display:flex;align-items:center;
 }
 .ft-copy-r{justify-content:flex-end}
-.ft-copy-c{justify-content:center;color:var(--red);font-weight:700}
+.ft-copy-c{justify-content:center;color:var(--accent);font-weight:700}
 
 /* ═══════════════════════════════════════
    REVEALS
@@ -529,7 +529,7 @@ footer{background:var(--ink);border-top:var(--rule-r)}
 .js-on .reveal[data-d="3"]{--rd:.24s}
 
 section[id]{scroll-margin-top:52px}
-:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* ═══════════════════════════════════════
    RESPONSIVE
@@ -608,7 +608,7 @@ section[id]{scroll-margin-top:52px}
       <span>Programas activos</span>
       <strong>05 / 05</strong>
     </div>
-    <div class="hero-meta-cell red-cell">
+    <div class="hero-meta-cell accent-cell">
       <span>Estado</span>
       <strong>/// INSCRIPCIONES ABIERTAS</strong>
     </div>
@@ -712,7 +712,7 @@ section[id]{scroll-margin-top:52px}
   </div>
   <div class="pgm-grid">
     <div class="pgm-cell reveal">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/guitar-warm/440/330" alt="Guitarra"/>
+      <img class="pgm-cell-img" src="Ceart imagenes/649543842_18164087686412828_355138816146051872_n.jpg" alt="Guitarra"/>
       <div class="pgm-cell-body">
         <span class="pgm-num">// 01 &mdash; GUITARRA</span>
         <div class="pgm-name">Gui-<br/>tarra</div>
@@ -721,7 +721,7 @@ section[id]{scroll-margin-top:52px}
       </div>
     </div>
     <div class="pgm-cell reveal" data-d="1">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/piano-warm/440/330" alt="Piano"/>
+      <img class="pgm-cell-img" src="Ceart imagenes/650026575_18164087722412828_1002517658578063833_n.jpg" alt="Piano"/>
       <div class="pgm-cell-body">
         <span class="pgm-num">// 02 &mdash; PIANO</span>
         <div class="pgm-name">Piano</div>
@@ -730,7 +730,7 @@ section[id]{scroll-margin-top:52px}
       </div>
     </div>
     <div class="pgm-cell reveal" data-d="2">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/vocal-ceart/440/330" alt="Canto"/>
+      <img class="pgm-cell-img" src="Ceart imagenes/657714758_18166184029412828_6554808545444732407_n.jpg" alt="Canto"/>
       <div class="pgm-cell-body">
         <span class="pgm-num">// 03 &mdash; CANTO</span>
         <div class="pgm-name">Canto</div>
@@ -739,7 +739,7 @@ section[id]{scroll-margin-top:52px}
       </div>
     </div>
     <div class="pgm-cell reveal" data-d="1">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/drums-ceart/440/330" alt="Batería"/>
+      <img class="pgm-cell-img" src="Ceart imagenes/657931227_18166184038412828_7223583108806769500_n.jpg" alt="Batería"/>
       <div class="pgm-cell-body">
         <span class="pgm-num">// 04 &mdash; BATERÍA</span>
         <div class="pgm-name">Bate-<br/>ría</div>
@@ -748,7 +748,7 @@ section[id]{scroll-margin-top:52px}
       </div>
     </div>
     <div class="pgm-cell reveal" data-d="2">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/violin-ceart/440/330" alt="Violín"/>
+      <img class="pgm-cell-img" src="Ceart imagenes/661556120_18167351425412828_3931148404765639004_n.jpg" alt="Violín"/>
       <div class="pgm-cell-body">
         <span class="pgm-num">// 05 &mdash; VIOLÍN</span>
         <div class="pgm-name">Violín</div>
@@ -770,35 +770,35 @@ section[id]{scroll-margin-top:52px}
   </div>
   <div class="gal-grid reveal" data-d="1">
     <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-main/800/600" alt="Estudio principal"/>
+      <img src="Ceart imagenes/658152097_122199475790904862_8501085392109851329_n.jpg" alt="Estudio principal"/>
       <div class="gi-label">
         <span class="gi-name">Estudio Principal</span>
         <span class="gi-sub">// Clases</span>
       </div>
     </div>
     <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-stage/800/600" alt="Recitales"/>
+      <img src="Ceart imagenes/649543842_18164087686412828_355138816146051872_n.jpg" alt="Recitales"/>
       <div class="gi-label">
         <span class="gi-name">Recitales</span>
         <span class="gi-sub">// Mensual</span>
       </div>
     </div>
     <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-guitar2/800/600" alt="Guitarra"/>
+      <img src="Ceart imagenes/650026575_18164087722412828_1002517658578063833_n.jpg" alt="Guitarra"/>
       <div class="gi-label">
         <span class="gi-name">Guitarra</span>
         <span class="gi-sub">// Niveles</span>
       </div>
     </div>
     <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-piano2/800/600" alt="Piano"/>
+      <img src="Ceart imagenes/657714758_18166184029412828_6554808545444732407_n.jpg" alt="Piano"/>
       <div class="gi-label">
         <span class="gi-name">Piano</span>
         <span class="gi-sub">// Semanal</span>
       </div>
     </div>
     <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-ensemble/800/600" alt="Ensamble"/>
+      <img src="Ceart imagenes/661556120_18167351425412828_3931148404765639004_n.jpg" alt="Ensamble"/>
       <div class="gi-label">
         <span class="gi-name">Ensamble</span>
         <span class="gi-sub">// Conjunto</span>
@@ -807,7 +807,7 @@ section[id]{scroll-margin-top:52px}
     <div class="gi" style="background:var(--ink);display:flex;align-items:center;justify-content:center;padding:24px">
       <div style="text-align:center">
         <div style="font-family:var(--display);font-size:clamp(28px,4vw,48px);color:#fff;text-transform:uppercase;letter-spacing:-.02em;line-height:.9;margin-bottom:14px">Inscríbete<br/>hoy</div>
-        <a href="login.html" style="display:inline-block;padding:10px 22px;background:var(--red);color:#fff;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">&gt;&gt; Portal</a>
+        <a href="login.html" style="display:inline-block;padding:10px 22px;background:var(--accent);color:#fff;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">&gt;&gt; Portal</a>
       </div>
     </div>
   </div>
@@ -847,7 +847,7 @@ section[id]{scroll-margin-top:52px}
 
     <div class="portal-panel reveal" data-d="2">
       <div class="pp-header">
-        <div class="pp-logo-cell"><img src="assets/logo.jpg" alt="CEART"/></div>
+        <div class="pp-logo-cell"><img src="Ceart imagenes/logo.jpeg" alt="CEART"/></div>
         <div class="pp-title-cell">
           <div class="pp-title">CEART</div>
           <div class="pp-sub">Portal de alumnos y maestros</div>
