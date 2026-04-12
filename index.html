@@ -14,8 +14,8 @@
   <link rel="icon" href="assets/logo.jpg" type="image/jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <!-- Geist (same as Floria's sans) + Spectral italic (Floria's serif accent) -->
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Spectral:ital,wght@1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"/>
+  <!-- Geist (Floria's sans) + EB Garamond italic (display serif with real character) -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"/>
 
   <style>
   /* ─── RESET ──────────────────────────────────────────────────── */
@@ -46,8 +46,8 @@
     --rule:      oklch(21% 0.007 75);
     --rule-gold: oklch(72% 0.18 75 / 0.26);
 
-    /* Typography — Geist (Floria's sans) + Spectral italic (Floria's serif accent) */
-    --serif: 'Spectral', Georgia, serif;
+    /* Typography — Geist sans + EB Garamond italic for display accents */
+    --serif: 'EB Garamond', Georgia, serif;
     --sans:  'Geist', 'Helvetica Neue', sans-serif;
 
     /* Easing */
@@ -247,22 +247,22 @@
     line-height: 0.88;
     margin-bottom: clamp(var(--sp-5), 4vw, var(--sp-6));
   }
-  /* "Hazlo" — Spectral italic, light weight */
+  /* "Hazlo" — Geist sans bold */
   .hl-serif {
-    display: block;
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    color: var(--t1);
-  }
-  /* "Artista" — Geist sans, heavy weight */
-  .hl-sans {
     display: block;
     font-family: var(--sans);
     font-style: normal;
     font-weight: 800;
     letter-spacing: -0.04em;
+    color: var(--t1);
+  }
+  /* "Artista" — Geist sans, ultra heavy + gold */
+  .hl-sans {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 900;
+    letter-spacing: -0.05em;
     color: var(--gold);
   }
 
@@ -388,14 +388,14 @@
     color: var(--gold); display: block; margin-bottom: var(--sp-4);
   }
 
-  /* Section h2 — italic serif like Floria */
+  /* Section h2 — Geist sans, heavy */
   h2 {
-    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-family: var(--sans); font-style: normal; font-weight: 800;
     font-size: clamp(36px, 5.5vw, 72px);
-    line-height: 0.94; letter-spacing: -0.02em;
+    line-height: 0.92; letter-spacing: -0.04em;
     color: var(--t1); margin-bottom: var(--sp-4);
   }
-  h2 strong { font-style: normal; font-weight: 600; }
+  h2 strong { color: var(--gold); }
 
   .sec-lead {
     font-size: 14px; font-weight: 400;
@@ -634,6 +634,80 @@
     background: var(--gold); border-radius: 4px;
   }
 
+
+  /* ─── REVIEWS ───────────────────────────────────────────────── */
+  #reviews { background: var(--bg); }
+
+  .rev-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; flex-wrap: wrap; gap: var(--sp-6);
+    margin-bottom: clamp(var(--sp-7), 6vw, var(--sp-8));
+  }
+
+  .rev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-4);
+  }
+
+  .rev-card {
+    background: var(--surf-1);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: clamp(var(--sp-5), 3vw, var(--sp-7));
+    display: flex; flex-direction: column; gap: var(--sp-5);
+    transition: border-color 0.3s, transform 0.35s var(--ease);
+  }
+  .rev-card:hover { border-color: var(--rule-gold); transform: translateY(-3px); }
+
+  /* Large opening quote mark using EB Garamond */
+  .rev-mark {
+    font-family: var(--serif); font-style: italic;
+    font-size: 72px; line-height: 0.6;
+    color: var(--gold); opacity: 0.5;
+    display: block; margin-bottom: calc(-1 * var(--sp-3));
+    user-select: none;
+  }
+
+  .rev-text {
+    font-size: 14px; font-weight: 400;
+    color: var(--t2); line-height: 1.78;
+    flex: 1;
+  }
+
+  .rev-footer {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: var(--sp-3);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--rule);
+  }
+
+  .rev-author { display: flex; flex-direction: column; gap: 3px; }
+  .rev-name {
+    font-size: 13px; font-weight: 600;
+    color: var(--t1); letter-spacing: -0.01em;
+  }
+  .rev-role {
+    font-size: 11px; font-weight: 400;
+    color: var(--t3); letter-spacing: 0.04em;
+  }
+
+  .rev-stars {
+    display: flex; gap: 3px; flex-shrink: 0;
+  }
+  .rev-stars span {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+  }
+
+  @media (max-width: 800px) {
+    .rev-grid { grid-template-columns: 1fr 1fr; }
+    .rev-card:last-child { grid-column: span 2; }
+  }
+  @media (max-width: 520px) {
+    .rev-grid { grid-template-columns: 1fr; }
+    .rev-card:last-child { grid-column: span 1; }
+  }
 
   /* ─── MANIFESTO ──────────────────────────────────────────────── */
   #manifesto {
@@ -891,13 +965,13 @@
     </p>
 
     <div class="hero-actions">
-      <a href="#programas" class="btn-primary">
-        Ver programas
+      <a href="login.html" class="btn-primary">
+        Portal del alumno
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
           <path d="M2 10L10 2M10 2H4M10 2V8"/>
         </svg>
       </a>
-      <a href="login.html" class="btn-ghost">Portal del alumno</a>
+      <a href="#programas" class="btn-ghost">Ver programas</a>
     </div>
 
     <div class="hero-stats">
@@ -1167,6 +1241,69 @@
             </div>
           </div>
 
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ REVIEWS ══════════════════════════════════════════════════ -->
+<section id="reviews" class="sec">
+  <div class="w">
+    <div class="rev-head">
+      <div>
+        <span class="sec-label reveal">Lo que dicen</span>
+        <h2 class="reveal">Familias y<br/><strong>alumnos</strong></h2>
+      </div>
+      <p class="sec-lead reveal" style="transition-delay:.07s">
+        Más de 8 años formando artistas en Chilpancingo.
+        Estas son algunas de sus historias.
+      </p>
+    </div>
+
+    <div class="rev-grid">
+
+      <div class="rev-card reveal" style="transition-delay:.04s">
+        <span class="rev-mark" aria-hidden="true">"</span>
+        <p class="rev-text">Mi hija lleva dos años en CEART y el cambio ha sido increíble. No solo aprendió a tocar el piano — ganó confianza para pararse frente a un público. Los maestros son muy dedicados y el ambiente es excelente.</p>
+        <div class="rev-footer">
+          <div class="rev-author">
+            <span class="rev-name">Valeria M.</span>
+            <span class="rev-role">Mamá de alumna de Piano</span>
+          </div>
+          <div class="rev-stars">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev-card reveal" style="transition-delay:.10s">
+        <span class="rev-mark" aria-hidden="true">"</span>
+        <p class="rev-text">Entré sin saber nada de batería. A los tres meses ya estaba tocando en mi primer recital. CEART no es una escuela normal — aquí de verdad te forman como artista, con disciplina y mucho apoyo.</p>
+        <div class="rev-footer">
+          <div class="rev-author">
+            <span class="rev-name">Diego R.</span>
+            <span class="rev-role">Alumno de Batería</span>
+          </div>
+          <div class="rev-stars">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev-card reveal" style="transition-delay:.16s">
+        <span class="rev-mark" aria-hidden="true">"</span>
+        <p class="rev-text">Las clases de canto cambiaron mi vida. Antes me daba vergüenza cantar en público. Ahora me presenté en el Concierto Back 80s ante cientos de personas y fue la mejor experiencia de mi vida.</p>
+        <div class="rev-footer">
+          <div class="rev-author">
+            <span class="rev-name">Sofía L.</span>
+            <span class="rev-role">Alumna de Canto</span>
+          </div>
+          <div class="rev-stars">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
         </div>
       </div>
 
