@@ -1,252 +1,338 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEART - Centro de Artes</title>
+    <title>CEART | Centro de Artes</title>
+    <!-- Fuentes de Google para un look profesional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- VARIABLES Y RESET --- */
         :root {
-            --color-negro: #010101;
-            --color-amarillo: #ffbb08;
-            --color-blanco: #fffcfc;
-            --color-gris-claro: #f4f4f4;
-            --color-gris-oscuro: #1a1a1a;
+            --negro: #010101;
+            --amarillo: #ffbb08;
+            --blanco: #fffcfc;
+            --gris-suave: #f5f5f5;
+            --sombra: 0 10px 30px rgba(1, 1, 1, 0.08);
+            --transicion: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--color-blanco);
-            color: var(--color-negro);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--blanco);
+            color: var(--negro);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* Header & Navegación */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--negro);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAV --- */
         header {
-            background-color: var(--color-negro);
-            padding: 1rem 0;
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
+            background: rgba(255, 252, 252, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transicion);
         }
 
         nav {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
 
-        .logo-container {
+        .logo-wrapper {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .logo-img {
-            height: 60px;
+            height: 50px;
             width: auto;
-            border-radius: 5px;
-            background-color: var(--color-blanco);
-            padding: 2px;
+            border-radius: 50%; /* Logo redondo elegante */
+            object-fit: cover;
+            border: 2px solid var(--amarillo);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-            gap: 30px;
+            gap: 2.5rem;
         }
 
         .nav-links a {
-            color: var(--color-blanco);
-            text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 1rem;
+            position: relative;
+            padding-bottom: 5px;
         }
 
-        .nav-links a:hover {
-            color: var(--color-amarillo);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--amarillo);
+            transition: var(--transicion);
         }
 
-        .btn-login {
-            background-color: var(--color-amarillo);
-            color: var(--color-negro);
-            padding: 8px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
-        .btn-login:hover {
+        .btn-nav {
+            background-color: var(--negro);
+            color: var(--amarillo);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transicion);
+            border: 1px solid var(--negro);
+        }
+
+        .btn-nav:hover {
+            background-color: var(--amarillo);
+            color: var(--negro);
+            border-color: var(--amarillo);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 187, 8, 0.4);
-            background-color: #e5a807;
         }
 
-        /* Hero Section */
+        /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(rgba(1, 1, 1, 0.7), rgba(1, 1, 1, 0.7)), 
-                        url('Ceart%20imagenes/657714758_18166184029412828_6554808545444732407_n.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--color-blanco);
+            position: relative;
+            /* Imagen de fondo con overlay oscuro */
+            background: linear-gradient(rgba(1, 1, 1, 0.6), rgba(1, 1, 1, 0.4)), 
+                        url('Ceart%20imagenes/657714758_18166184029412828_6554808545444732407_n.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efecto Parallax */
+            color: var(--blanco);
+            padding: 0 20px;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn Up 1s ease-out;
         }
 
-        .hero-content p {
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--blanco);
+        }
+
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
         .btn-hero {
-            background-color: var(--color-amarillo);
-            color: var(--color-negro);
-            padding: 15px 40px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
             display: inline-block;
+            background-color: var(--amarillo);
+            color: var(--negro);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: var(--transicion);
+            box-shadow: 0 10px 20px rgba(255, 187, 8, 0.3);
         }
 
         .btn-hero:hover {
-            background-color: var(--color-blanco);
-            color: var(--color-negro);
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 187, 8, 0.5);
+            background-color: #fff;
         }
 
-        /* Secciones Generales */
+        /* --- SECCIONES GENERALES --- */
         section {
-            padding: 80px 20px;
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: var(--color-negro);
-            position: relative;
+            margin-bottom: 4rem;
         }
 
-        .section-title::after {
-            content: '';
+        .subtitle {
+            color: var(--amarillo);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
             display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--color-amarillo);
-            margin: 15px auto 0;
+            margin-bottom: 10px;
         }
 
-        /* Galería / Cursos */
-        .gallery-grid {
+        .section-title {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* --- GRID DE CURSOS (TARJETAS) --- */
+        .grid-cursos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
         .card {
-            background-color: var(--color-blanco);
-            border-radius: 10px;
+            background: var(--blanco);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
+            box-shadow: var(--sombra);
+            transition: var(--transicion);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--color-amarillo);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-image-wrapper {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
         }
 
         .card-img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.1);
         }
 
         .card-content {
-            padding: 20px;
+            padding: 2rem;
         }
 
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--color-negro);
-        }
-
-        .card-text {
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .btn-card {
+        .card-tag {
+            background-color: rgba(255, 187, 8, 0.15);
+            color: #d49b06;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
             display: inline-block;
-            color: var(--color-negro);
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 2px solid var(--color-amarillo);
-            padding-bottom: 5px;
-            transition: color 0.3s ease;
+            margin-bottom: 1rem;
         }
 
-        .btn-card:hover {
-            color: var(--color-amarillo);
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
         }
 
-        /* Sobre Nosotros */
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .link-text {
+            font-weight: 600;
+            color: var(--negro);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .link-text:hover {
+            color: var(--amarillo);
+            gap: 12px;
+        }
+
+        /* --- SOBRE NOSOTROS --- */
         .about-section {
-            background-color: var(--color-gris-claro);
+            background-color: var(--negro);
+            color: var(--blanco);
             width: 100%;
             max-width: 100%;
+            padding: 6rem 2rem;
         }
-        
+
         .about-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 50px;
+            gap: 4rem;
             flex-wrap: wrap;
         }
 
-        .about-image {
+        .about-img-box {
             flex: 1;
             min-width: 300px;
+            position: relative;
         }
 
-        .about-image img {
+        .about-img-box img {
             width: 100%;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: -20px 20px 0px var(--amarillo); /* Detalle de diseño */
+            filter: grayscale(20%);
+            transition: var(--transicion);
+        }
+
+        .about-img-box:hover img {
+            filter: grayscale(0%);
+            transform: translate(5px, -5px);
+            box-shadow: -25px 25px 0px var(--amarillo);
         }
 
         .about-text {
@@ -255,186 +341,209 @@
         }
 
         .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--color-negro);
+            font-size: 3rem;
+            color: var(--blanco);
+            margin-bottom: 1.5rem;
         }
 
-        /* Footer */
+        .about-text p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* --- FOOTER --- */
         footer {
-            background-color: var(--color-negro);
-            color: var(--color-blanco);
-            padding: 50px 20px 20px;
-            margin-top: 50px;
+            background-color: #050505;
+            color: var(--blanco);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid #222;
         }
 
-        .footer-content {
+        .footer-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-column h3 {
-            color: var(--color-amarillo);
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+        .footer-col h4 {
+            color: var(--amarillo);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
         }
 
-        .footer-column ul {
-            list-style: none;
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
         }
 
-        .footer-column ul li {
-            margin-bottom: 10px;
+        .footer-col ul li a {
+            color: #888;
+            transition: 0.3s;
+            font-size: 0.9rem;
         }
 
-        .footer-column a {
-            color: var(--color-blanco);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: var(--color-amarillo);
+        .footer-col ul li a:hover {
+            color: var(--amarillo);
+            padding-left: 5px;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            color: #888;
+            padding-top: 2rem;
+            border-top: 1px solid #1a1a1a;
+            color: #555;
+            font-size: 0.85rem;
         }
 
-        /* Responsive */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-container {
-                flex-direction: column;
-            }
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; } /* En móvil se oculta por simplicidad */
+            .about-container { flex-direction: column; }
+            .about-img-box { margin-bottom: 2rem; }
+            .section-title { font-size: 2.2rem; }
+        }
+
+        /* Animación simple */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Navegación -->
     <header>
         <nav>
-            <div class="logo-container">
-                <!-- Asegúrate de que esta imagen exista en tu carpeta -->
+            <div class="logo-wrapper">
                 <img src="Ceart imagenes/logo.jpeg" alt="Logo CEART" class="logo-img">
-                <span style="color: var(--color-blanco); font-weight: bold; font-size: 1.5rem;">CEART</span>
+                <span class="brand-name">CEART</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#disciplinas">Disciplinas</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <a href="login.html" class="btn-login">Ingresar</a>
+            <a href="login.html" class="btn-nav">Acceso</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <div id="inicio" class="hero">
         <div class="hero-content">
-            <h1>Centro de Artes</h1>
-            <p>Descubre tu potencial creativo en nuestras instalaciones de vanguardia. Música, danza, teatro y artes visuales te esperan.</p>
-            <a href="#cursos" class="btn-hero">Ver Cursos</a>
+            <h1>El Arte es Vida</h1>
+            <p>Descubre tu potencial creativo en el Centro de Artes. Espacios diseñados para inspirar, crear y transformar.</p>
+            <a href="#disciplinas" class="btn-hero">Explorar Cursos</a>
         </div>
-    </section>
+    </div>
 
-    <!-- Cursos / Galería -->
-    <section id="cursos">
-        <h2 class="section-title">Nuestras Disciplinas</h2>
-        <div class="gallery-grid">
-            <!-- Tarjeta 1 -->
-            <div class="card">
-                <img src="Ceart imagenes/649543842_18164087686412828_355138816146051872_n.jpg" alt="Música" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title">Música</h3>
-                    <p class="card-text">Clases de instrumentos, teoría musical y ensambles para todos los niveles.</p>
-                    <a href="#" class="btn-card">Más información →</a>
+    <!-- Disciplinas -->
+    <section id="disciplinas">
+        <div class="section-header">
+            <span class="subtitle">Nuestra Oferta</span>
+            <h2 class="section-title">Disciplinas Artísticas</h2>
+        </div>
+
+        <div class="grid-cursos">
+            <!-- Card 1 -->
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="Ceart imagenes/649543842_18164087686412828_355138816146051872_n.jpg" alt="Música" class="card-img">
                 </div>
-            </div>
-            <!-- Tarjeta 2 -->
-            <div class="card">
-                <img src="Ceart imagenes/650026575_18164087722412828_1002517658578063833_n.jpg" alt="Danza" class="card-img">
                 <div class="card-content">
-                    <h3 class="card-title">Danza</h3>
-                    <p class="card-text">Ballet, contemporáneo, folklórico y más. Expresa tu cuerpo en movimiento.</p>
-                    <a href="#" class="btn-card">Más información →</a>
+                    <span class="card-tag">Sonido</span>
+                    <h3>Música</h3>
+                    <p>Desde teoría hasta interpretación instrumental. Encuentra tu ritmo y domina el escenario.</p>
+                    <a href="#" class="link-text">Ver detalles <span>→</span></a>
                 </div>
-            </div>
-            <!-- Tarjeta 3 -->
-            <div class="card">
-                <img src="Ceart imagenes/657931227_18166184038412828_7223583108806769500_n.jpg" alt="Teatro" class="card-img">
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="Ceart imagenes/650026575_18164087722412828_1002517658578063833_n.jpg" alt="Danza" class="card-img">
+                </div>
                 <div class="card-content">
-                    <h3 class="card-title">Teatro</h3>
-                    <p class="card-text">Actuación, escenografía y producción teatral. Sube al escenario con nosotros.</p>
-                    <a href="#" class="btn-card">Más información →</a>
+                    <span class="card-tag">Movimiento</span>
+                    <h3>Danza</h3>
+                    <p>Ballet, contemporáneo y folklórico. Expresa emociones a través del lenguaje corporal.</p>
+                    <a href="#" class="link-text">Ver detalles <span>→</span></a>
                 </div>
-            </div>
-             <!-- Tarjeta 4 -->
-             <div class="card">
-                <img src="Ceart imagenes/658152097_122199475790904862_8501085392109851329_n.jpg" alt="Artes Visuales" class="card-img">
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="Ceart imagenes/657931227_18166184038412828_7223583108806769500_n.jpg" alt="Teatro" class="card-img">
+                </div>
                 <div class="card-content">
-                    <h3 class="card-title">Artes Visuales</h3>
-                    <p class="card-text">Pintura, escultura, fotografía y diseño. Da forma a tu imaginación.</p>
-                    <a href="#" class="btn-card">Más información →</a>
+                    <span class="card-tag">Escena</span>
+                    <h3>Teatro</h3>
+                    <p>Actuación, voz y presencia escénica. Conviértete en otro personaje y cuenta historias.</p>
+                    <a href="#" class="link-text">Ver detalles <span>→</span></a>
                 </div>
-            </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="Ceart imagenes/658152097_122199475790904862_8501085392109851329_n.jpg" alt="Artes Visuales" class="card-img">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Visual</span>
+                    <h3>Artes Plásticas</h3>
+                    <p>Pintura, escultura y nuevas tecnologías. Materializa tus ideas en obras tangibles.</p>
+                    <a href="#" class="link-text">Ver detalles <span>→</span></a>
+                </div>
+            </article>
         </div>
     </section>
 
     <!-- Sobre Nosotros -->
-    <div class="about-section">
-        <section id="nosotros">
-            <div class="about-container">
-                <div class="about-image">
-                    <img src="Ceart imagenes/661556120_18167351425412828_3931148404765639004_n.jpg" alt="Instalaciones CEART">
-                </div>
-                <div class="about-text">
-                    <h2>Sobre CEART</h2>
-                    <p>Somos un centro dedicado al fomento y desarrollo de las artes. Contamos con instalaciones modernas y un equipo de profesionales apasionados por la enseñanza artística.</p>
-                    <br>
-                    <p>Nuestro objetivo es proporcionar un espacio donde la creatividad florezca y cada estudiante pueda desarrollar su máximo potencial artístico en un ambiente inclusivo y estimulante.</p>
-                </div>
+    <div class="about-section" id="nosotros">
+        <div class="about-container">
+            <div class="about-img-box">
+                <img src="Ceart imagenes/661556120_18167351425412828_3931148404765639004_n.jpg" alt="Instalaciones">
             </div>
-        </section>
+            <div class="about-text">
+                <span class="subtitle" style="color: var(--amarillo);">Nuestra Esencia</span>
+                <h2>Más que una escuela,<br>una comunidad creativa</h2>
+                <p>En CEART creemos que el arte es fundamental para el desarrollo humano. Nuestras instalaciones de vanguardia y nuestro equipo de docentes profesionales están dedicados a potenciar tu talento.</p>
+                <p>Únete a una generación de artistas que están redefiniendo la cultura local.</p>
+                <br>
+                <a href="#contacto" style="color: var(--amarillo); font-weight: 600; border-bottom: 1px solid var(--amarillo);">Contáctanos hoy →</a>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer id="contacto">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>CEART</h3>
-                <p>Centro de Artes para el desarrollo cultural y creativo de la comunidad.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>CEART</h4>
+                <p style="color: #888; font-size: 0.9rem;">Centro de Artes comprometido con la excelencia educativa y la innovación cultural.</p>
             </div>
-            <div class="footer-column">
-                <h3>Enlaces Rápidos</h3>
+            <div class="footer-col">
+                <h4>Explora</h4>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#disciplinas">Cursos</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="login.html">Acceso Alumnos</a></li>
+                    <li><a href="login.html">Portal Alumnos</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h3>Contacto</h3>
+            <div class="footer-col">
+                <h4>Contacto</h4>
                 <ul>
-                    <li>📍 Calle Principal #123</li>
-                    <li>📞 (555) 123-4567</li>
-                    <li>✉️ contacto@ceart.edu</li>
+                    <li><a href="#">info@ceart.edu</a></li>
+                    <li><a href="#">+52 555 123 4567</a></li>
+                    <li><a href="#">Av. Cultura #100</a></li>
                 </ul>
             </div>
         </div>
