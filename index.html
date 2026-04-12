@@ -733,12 +733,27 @@
     color: var(--t3); display: block; margin-bottom: var(--sp-7);
   }
   .mf-quote {
-    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
     font-size: clamp(26px, 4.8vw, 58px);
-    line-height: 1.12; letter-spacing: -0.01em;
+    line-height: 1.14; letter-spacing: -0.01em;
     color: var(--t1); margin-bottom: var(--sp-6);
+    min-height: 6em;
+    display: flex; align-items: center; justify-content: center;
   }
-  .mf-quote strong { font-style: normal; font-weight: 600; color: var(--gold); }
+  .mf-quote-text {
+    opacity: 1;
+    transition: opacity 0.6s ease, transform 0.6s var(--ease);
+    transform: translateY(0);
+  }
+  .mf-quote-text.out {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  .mf-quote-text.in {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .mf-quote strong { font-style: normal; font-weight: 700; color: var(--gold); }
   .mf-rule { width: 36px; height: 1px; background: var(--gold); margin: 0 auto var(--sp-5); }
   .mf-attr { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--t3); }
 
@@ -770,12 +785,12 @@
     max-width: 720px;
   }
   .cta-headline {
-    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-family: var(--sans); font-style: normal; font-weight: 900;
     font-size: clamp(52px, 10vw, 132px);
-    line-height: 0.9; letter-spacing: -0.02em;
+    line-height: 0.88; letter-spacing: -0.05em;
     color: var(--t1); margin-bottom: var(--sp-5);
   }
-  .cta-headline strong { font-style: normal; font-weight: 600; color: var(--gold); }
+  .cta-headline strong { color: var(--gold); }
   .cta-sub {
     font-size: clamp(14px, 1.4vw, 16px); font-weight: 400;
     color: oklch(72% 0.005 75); line-height: 1.78; max-width: 44ch;
@@ -1317,11 +1332,13 @@
   <span class="mf-watermark" aria-hidden="true">ARTE</span>
   <div class="mf-inner reveal">
     <span class="mf-eyebrow">Nuestra filosofía</span>
-    <p class="mf-quote">
-      La música no es un talento<br/>
-      que se nace teniendo.<br/>
-      Es un <strong>oficio que se forja</strong>,<br/>
-      un arte que se vive.
+    <p class="mf-quote" id="mf-quote">
+      <span class="mf-quote-text" id="mf-quote-text">
+        La música no es un talento<br/>
+        que se nace teniendo.<br/>
+        Es un <strong>oficio que se forja</strong>,<br/>
+        un arte que se vive.
+      </span>
     </p>
     <div class="mf-rule"></div>
     <span class="mf-attr">CEART · Centro Educativo y Artístico Johann Sebastian Bach · Chilpancingo</span>
@@ -1448,6 +1465,34 @@
       el.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  /* Manifesto quote rotator */
+  const phrases = [
+    `La música no es un talento<br>que se nace teniendo.<br>Es un <strong>oficio que se forja</strong>,<br>un arte que se vive.`,
+    `Tocar un instrumento no es<br>un hobby. Es aprender a<br><strong>hablar otro idioma</strong>,<br>el idioma de las emociones.`,
+    `El escenario no da miedo<br>cuando te has preparado.<br>Cada clase es un paso<br>hacia tu <strong>mejor versión</strong>.`,
+    `La disciplina de la música<br>se convierte en disciplina<br>para la vida. <strong>Empieza hoy</strong><br>y cambia tu historia.`,
+    `No necesitas ser perfecto<br>para empezar. Necesitas<br>empezar para llegar<br>a ser <strong>extraordinario</strong>.`,
+    `Un instrumento en tus manos<br>es más que notas.<br>Es <strong>confianza, presencia</strong><br>y voz propia.`,
+  ];
+
+  const quoteEl = document.getElementById('mf-quote-text');
+  let current = 0;
+
+  function rotateQuote() {
+    quoteEl.classList.add('out');
+    setTimeout(() => {
+      current = (current + 1) % phrases.length;
+      quoteEl.innerHTML = phrases[current];
+      quoteEl.classList.remove('out');
+      quoteEl.classList.add('in');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        quoteEl.classList.remove('in');
+      }));
+    }, 620);
+  }
+
+  setInterval(rotateQuote, 4500);
 
   /* Scroll reveal */
   const revealEls = document.querySelectorAll('.reveal');
