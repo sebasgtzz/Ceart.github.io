@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="theme-color" content="#c9960a"/>
-  <meta name="description" content="Centro Educativo y Artístico Johann Sebastian Bach — Guitarra, piano, canto, batería y violín en Monterrey."/>
+  <meta name="theme-color" content="#E61919"/>
+  <meta name="description" content="Centro Educativo y Artístico Johann Sebastian Bach — Chilpancingo, Guerrero. Guitarra, piano, canto, batería, violín."/>
   <meta property="og:title" content="CEART — Centro Educativo y Artístico"/>
-  <meta property="og:description" content="Aprende guitarra, piano, canto, batería y violín con maestros dedicados en un ambiente cálido y profesional."/>
+  <meta property="og:description" content="Escuela de música en Chilpancingo, Guerrero. Cinco programas, maestros dedicados."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="assets/logo.jpg"/>
   <title>CEART — Centro Educativo y Artístico</title>
@@ -14,608 +14,939 @@
   <link rel="icon" href="assets/logo.jpg" type="image/jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Nunito:wght@300;400;500;600;700;800&family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* ─── RESET ─── */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --canvas:#f0ece0;
-      --canvas-2:#e8e2d4;
-      --ink:#1a1814;
-      --ink-2:#2e2b24;
-      --muted:#7c7467;
-      --border:rgba(26,24,20,.09);
-      --gold:#c9960a;
-      --gold-l:rgba(201,150,10,.12);
-      --gold-b:rgba(201,150,10,.28);
-      --cream:#fdfcf8;
-      --r:20px;
-      --ease:cubic-bezier(.25,1,.5,1);
-      --ease-out:cubic-bezier(.16,1,.3,1);
-    }
-    html{scroll-behavior:smooth}
-    body{font-family:'Nunito',sans-serif;background:var(--canvas);color:var(--ink);line-height:1.6;overflow-x:hidden}
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    /* ─── NOISE ─── */
-    .noise-layer{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.04;mix-blend-mode:multiply;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size:256px 256px}
+/* ═══════════════════════════════════════
+   TOKENS — SWISS INDUSTRIAL PRINT
+═══════════════════════════════════════ */
+:root{
+  --canvas:#EAE8E3;
+  --canvas-2:#DDDBD6;
+  --ink:#0A0A09;
+  --ink-mid:#3A3835;
+  --ink-faint:#7A786F;
+  --red:#E61919;
+  --rule:1px solid var(--ink);
+  --rule-h:2px solid var(--ink);
+  --rule-r:3px solid var(--red);
+  --mono:'JetBrains Mono',monospace;
+  --display:'Archivo Black',sans-serif;
+  --e:cubic-bezier(.32,.72,0,1);
+}
 
-    /* ─── ORBS ─── */
-    .orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:orb-drift var(--d,24s) ease-in-out infinite}
-    .orb-a{width:560px;height:560px;background:radial-gradient(circle,rgba(201,150,10,.16) 0%,transparent 70%);top:-140px;left:-80px;--d:22s}
-    .orb-b{width:440px;height:440px;background:radial-gradient(circle,rgba(170,130,80,.13) 0%,transparent 70%);bottom:-60px;right:-40px;--d:29s;animation-delay:-15s}
-    @keyframes orb-drift{
-      0%,100%{transform:translate(0,0)}
-      30%{transform:translate(35px,-45px)}
-      60%{transform:translate(-25px,28px)}
-      80%{transform:translate(44px,18px)}
-    }
+/* ═══════════════════════════════════════
+   GLOBAL
+═══════════════════════════════════════ */
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--mono);
+  background:var(--canvas);
+  color:var(--ink);
+  line-height:1.5;
+  overflow-x:hidden;
+}
 
-    /* ─── NAV ─── */
-    nav{position:fixed;inset:0 0 auto 0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;transition:all .4s var(--ease)}
-    nav.scrolled{background:rgba(240,236,224,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 4px 24px rgba(26,24,20,.06)}
-    .nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none}
-    .nav-brand img{height:36px;width:36px;object-fit:contain;border-radius:8px}
-    .nav-brand-name{font-family:'Raleway',sans-serif;font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.4px;display:block;line-height:1.1}
-    .nav-brand-sub{font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.3px;display:block}
-    .nav-r{display:flex;align-items:center;gap:6px}
-    .nav-a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border-radius:50px;transition:all .2s var(--ease)}
-    .nav-a:hover,.nav-a.active{color:var(--ink);background:rgba(26,24,20,.07)}
-    .nav-btn{background:var(--ink);color:var(--cream);font-size:13px;font-weight:700;padding:9px 22px;border-radius:50px;text-decoration:none;font-family:'Raleway',sans-serif;transition:all .2s var(--ease);letter-spacing:.1px}
-    .nav-btn:hover{background:var(--ink-2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(26,24,20,.18)}
-    .nav-btn:active{transform:scale(.97);box-shadow:none}
+/* Mechanical noise — fixed, pointer-events-none */
+.noise{
+  position:fixed;inset:0;z-index:9000;
+  pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
 
-    /* ─── HERO ─── */
-    #hero{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 72px;position:relative;overflow:hidden}
-    /* vertical accent lines */
-    #hero::before,#hero::after{content:'';position:absolute;width:1px;height:min(180px,18vh);top:50%;background:var(--border);animation:line-in 1.2s var(--ease-out) .7s both}
-    #hero::before{left:clamp(24px,5vw,80px);transform:translateY(-50%) scaleY(0);transform-origin:top}
-    #hero::after{right:clamp(24px,5vw,80px);transform:translateY(-50%) scaleY(0);transform-origin:top}
-    @keyframes line-in{to{transform:translateY(-50%) scaleY(1)}}
+/* ═══════════════════════════════════════
+   NAV — full-width strip
+═══════════════════════════════════════ */
+#nav{
+  position:fixed;inset:0 0 auto 0;z-index:200;
+  background:var(--ink);
+  border-bottom:var(--rule-r);
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;height:52px;
+  padding:0 24px;
+}
+.nav-id{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+}
+.nav-id::before{content:'[ SYS ]';color:var(--red);font-size:9px}
+.nav-links{
+  display:flex;align-items:center;gap:0;
+  border-left:1px solid rgba(255,255,255,.1);
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.nav-a{
+  color:rgba(255,255,255,.45);text-decoration:none;
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;padding:0 18px;height:52px;
+  display:flex;align-items:center;
+  border-right:1px solid rgba(255,255,255,.08);
+  transition:color .15s,background .15s;
+}
+.nav-a:last-child{border-right:none}
+.nav-a:hover,.nav-a.active{color:#fff;background:rgba(255,255,255,.06)}
+.nav-r{
+  display:flex;justify-content:flex-end;
+}
+.nav-cta{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 18px;background:var(--red);color:#fff;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:opacity .15s;white-space:nowrap;
+}
+.nav-cta:hover{opacity:.85}
+.nav-cta:active{opacity:.7}
 
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,24,20,.06);border:1px solid var(--border);border-radius:50px;padding:6px 16px 6px 8px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:44px;font-family:'Raleway',sans-serif;
-      animation:fade-up .8s var(--ease-out) .15s both}
-    .hero-badge img{width:22px;height:22px;border-radius:5px;object-fit:contain}
+/* ═══════════════════════════════════════
+   GRID DIVIDER TRICK
+   Parent bg = divider color, gap:1px, children bg = canvas
+═══════════════════════════════════════ */
+.gd{display:grid;gap:1px;background:var(--ink)}
+.gd>*{background:var(--canvas)}
 
-    h1{font-family:'Bodoni Moda',serif;font-size:clamp(88px,17vw,230px);font-weight:900;font-style:italic;line-height:.83;letter-spacing:-4px;color:var(--ink);margin-bottom:24px;text-wrap:balance;
-      animation:fade-up .9s var(--ease-out) .3s both}
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+#hero{
+  min-height:100dvh;
+  padding-top:52px;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  border-bottom:var(--rule-h);
+}
 
-    .hero-sub{font-family:'Raleway',sans-serif;font-size:clamp(10px,1.4vw,13px);font-weight:700;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;
-      animation:fade-up .8s var(--ease-out) .48s both}
+/* top metadata strip */
+.hero-meta{
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:1px;background:var(--ink);
+  border-bottom:var(--rule);
+}
+.hero-meta-cell{
+  background:var(--canvas);
+  padding:10px 16px;
+  font-size:9px;font-weight:600;color:var(--ink-faint);
+  letter-spacing:.1em;text-transform:uppercase;
+  display:flex;flex-direction:column;gap:3px;
+}
+.hero-meta-cell strong{color:var(--ink);font-weight:700;font-size:10px}
+.hero-meta-cell.red-cell{background:var(--red)}
+.hero-meta-cell.red-cell,.hero-meta-cell.red-cell strong{color:#fff}
 
-    .hero-desc{font-size:clamp(15px,1.9vw,18px);color:var(--muted);line-height:1.72;max-width:460px;margin:0 auto 52px;
-      animation:fade-up .8s var(--ease-out) .62s both}
-    .hero-desc em{font-style:italic;color:var(--ink);font-weight:700;font-family:'Bodoni Moda',serif}
+/* main hero body */
+.hero-body{
+  display:grid;grid-template-columns:1fr 380px;
+  border-bottom:var(--rule);
+}
+.hero-left{
+  padding:48px 40px 48px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:var(--rule);
+}
+.hero-label{
+  font-size:9px;font-weight:700;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;margin-bottom:32px;
+}
+.hero-label::before{content:'';display:block;width:24px;height:1px;background:var(--red)}
+h1{
+  font-family:var(--display);
+  font-size:clamp(96px,17vw,220px);
+  line-height:.83;letter-spacing:-.03em;
+  color:var(--ink);text-transform:uppercase;
+  margin-bottom:0;
+}
+.hero-sub-block{
+  display:grid;grid-template-columns:auto 1fr;gap:1px;background:var(--ink);
+  margin-top:40px;
+}
+.hero-sub-block>*{background:var(--canvas);padding:12px 16px}
+.hero-sub-name{
+  font-family:var(--display);font-size:clamp(13px,1.6vw,16px);
+  text-transform:uppercase;letter-spacing:.04em;
+  border-right:var(--rule);white-space:nowrap;
+}
+.hero-sub-desc{font-size:11px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;line-height:1.7}
 
-    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
-      animation:fade-up .8s var(--ease-out) .76s both}
+.hero-right{
+  display:flex;flex-direction:column;
+}
+.hero-coords{
+  padding:16px;border-bottom:var(--rule);
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);
+}
+.hero-coords>*{background:var(--canvas);padding:8px 10px}
+.coord-label{font-size:8px;font-weight:700;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase;display:block;margin-bottom:3px}
+.coord-val{font-size:12px;font-weight:700;color:var(--ink);letter-spacing:.04em}
 
-    .hero-loc{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:rgba(26,24,20,.22);letter-spacing:2.5px;text-transform:uppercase;white-space:nowrap;
-      animation:fade-up .6s var(--ease-out) .9s both}
+.hero-crosshair{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  background:var(--canvas);
+}
+/* crosshair lines */
+.hero-crosshair::before,.hero-crosshair::after{
+  content:'';position:absolute;background:rgba(10,10,9,.1);pointer-events:none;
+}
+.hero-crosshair::before{width:1px;top:0;bottom:0;left:50%}
+.hero-crosshair::after{height:1px;left:0;right:0;top:50%}
+.cross-center{
+  width:40px;height:40px;
+  position:relative;
+}
+.cross-center::before,.cross-center::after{content:'';position:absolute;background:var(--ink)}
+.cross-center::before{width:1px;height:100%;left:50%;top:0}
+.cross-center::after{height:1px;width:100%;top:50%;left:0}
+.cross-ring{
+  width:40px;height:40px;border:1px solid var(--ink);border-radius:50%;
+  position:relative;
+  animation:spin-slow 20s linear infinite;
+}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
 
-    @keyframes fade-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero-cta-block{
+  border-top:var(--rule);padding:16px;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);
+}
+.hero-cta-block>*{background:var(--canvas)}
+.btn-primary{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 16px;background:var(--ink);color:#fff;
+  text-decoration:none;text-align:center;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:opacity .15s;
+}
+.btn-primary:hover{opacity:.8}
+.btn-primary:active{opacity:.65}
+.btn-secondary{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 16px;background:var(--canvas);color:var(--ink);
+  border:none;text-decoration:none;text-align:center;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .15s;cursor:pointer;
+}
+.btn-secondary:hover{background:var(--canvas-2)}
 
-    /* ─── BUTTONS ─── */
-    .btn-p{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;background:var(--ink);color:var(--cream);transition:all .25s var(--ease);border:none;cursor:pointer;letter-spacing:.2px;display:inline-block}
-    .btn-p:hover{background:var(--ink-2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,24,20,.22)}
-    .btn-p:active{transform:scale(.97) translateY(0);box-shadow:none}
-    .btn-g{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;background:transparent;color:var(--ink);border:1.5px solid rgba(26,24,20,.28);transition:all .25s var(--ease);cursor:pointer;display:inline-block}
-    .btn-g:hover{border-color:var(--ink);background:rgba(26,24,20,.06);transform:translateY(-1px)}
-    .btn-g:active{transform:scale(.97)}
-    .btn-gold{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;padding:15px 36px;border-radius:50px;text-decoration:none;background:var(--gold);color:var(--cream);transition:all .25s var(--ease);border:none;cursor:pointer;display:block;text-align:center}
-    .btn-gold:hover{background:#b8870a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,150,10,.3)}
-    .btn-gold:active{transform:scale(.97)}
+/* hero footer strip */
+.hero-foot{
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:1px;background:var(--ink);
+}
+.hero-foot>*{background:var(--canvas);padding:10px 16px;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center}
+.hf-ref::before{content:'REF//';margin-right:6px;color:var(--red);font-size:8px}
+.hf-sch{color:var(--red);font-weight:700;justify-content:flex-end}
 
-    /* ─── MANIFESTO ─── */
-    #manifesto{background:var(--ink);padding:clamp(64px,10vw,120px) 24px;position:relative;overflow:hidden}
-    /* decorative vertical rules */
-    #manifesto::before,#manifesto::after{content:'';position:absolute;width:1px;top:0;height:100%;background:rgba(255,255,255,.05)}
-    #manifesto::before{left:clamp(24px,7vw,100px)}
-    #manifesto::after{right:clamp(24px,7vw,100px)}
-    .mf-inner{max-width:860px;margin:0 auto;text-align:center}
-    .mf-mark{width:1px;height:56px;background:rgba(255,255,255,.12);margin:0 auto 40px}
-    .mf-quote{font-family:'Bodoni Moda',serif;font-size:clamp(24px,4.2vw,52px);font-weight:400;font-style:italic;color:rgba(255,255,255,.85);line-height:1.28;letter-spacing:-.4px;margin-bottom:28px}
-    .mf-quote strong{font-style:normal;font-weight:900;color:var(--gold)}
-    .mf-attr{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.22);letter-spacing:2.5px;text-transform:uppercase}
+/* ═══════════════════════════════════════
+   TICKER / DATA STREAM
+═══════════════════════════════════════ */
+.ticker-band{
+  background:var(--ink);border-bottom:var(--rule-r);
+  overflow:hidden;padding:11px 0;
+}
+.ticker-track{
+  display:flex;width:max-content;
+  animation:ticker 22s linear infinite;
+}
+.ticker-band:hover .ticker-track{animation-play-state:paused}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:0 28px;white-space:nowrap;
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+}
+.tick-sep{color:var(--red);font-size:11px}
 
-    /* ─── SECTION COMMONS ─── */
-    .sec{padding:clamp(72px,10vw,112px) 24px}
-    .w{max-width:1040px;margin:0 auto}
-    .eyebrow{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.8px;text-transform:uppercase;display:block;margin-bottom:16px}
-    h2{font-family:'Bodoni Moda',serif;font-size:clamp(30px,5vw,56px);font-weight:900;font-style:italic;letter-spacing:-1.5px;line-height:1.0;margin-bottom:16px;text-wrap:balance}
-    .lead{font-size:17px;color:var(--muted);line-height:1.75;max-width:480px}
+/* ═══════════════════════════════════════
+   SECTION COMMON
+═══════════════════════════════════════ */
+.sec{border-bottom:var(--rule-h)}
+.sec-header{
+  display:grid;grid-template-columns:80px 1fr auto;
+  gap:1px;background:var(--ink);
+  border-bottom:var(--rule);
+}
+.sec-header>*{background:var(--canvas);padding:14px 20px;display:flex;align-items:center}
+.sec-idx{
+  font-size:9px;font-weight:700;color:var(--red);letter-spacing:.1em;
+  justify-content:center;text-align:center;border-right:var(--rule);font-family:var(--mono);
+}
+.sec-title{
+  font-family:var(--display);font-size:clamp(18px,3vw,28px);
+  letter-spacing:-.01em;text-transform:uppercase;
+}
+.sec-meta{
+  font-size:9px;font-weight:600;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;
+  justify-content:flex-end;
+}
 
-    /* ─── PROGRAMS (FAN DECK) ─── */
-    #programas{background:var(--canvas);min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 24px 60px}
-    .pgm-hd{text-align:center;margin-bottom:52px;position:relative;z-index:10}
-    .pgm-hd .lead{margin:0 auto}
-    .fan-stage{position:relative;width:min(1100px,calc(100vw - 48px));height:390px;flex-shrink:0}
-    .fan-card{position:absolute;width:220px;height:370px;left:50%;top:50%;margin-left:-110px;margin-top:-185px;border-radius:24px;overflow:hidden;cursor:pointer;background:var(--cream);box-shadow:0 20px 60px rgba(26,24,20,.1),inset 0 1px 0 rgba(253,252,248,.9);display:flex;flex-direction:column;transition:box-shadow .35s var(--ease)}
-    .fan-card:hover{box-shadow:0 40px 80px rgba(26,24,20,.18),inset 0 1px 0 rgba(253,252,248,.9)}
-    .fan-card-img{width:100%;height:165px;object-fit:cover;object-position:center;display:block;flex-shrink:0}
-    .fan-card-body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
-    .fan-card-num{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;color:rgba(26,24,20,.2);letter-spacing:1.5px;margin-bottom:10px}
-    .fan-card-name{font-family:'Bodoni Moda',serif;font-size:21px;font-weight:900;font-style:italic;color:var(--ink);margin-bottom:7px;line-height:1}
-    .fan-card-desc{font-size:12px;color:var(--muted);line-height:1.6;flex:1}
-    .fan-card-bar{height:2px;background:var(--border);border-radius:1px;margin-top:16px;overflow:hidden}
-    .fan-card-fill{height:100%;width:0;background:var(--c,var(--gold));border-radius:1px;transition:width .9s var(--ease)}
-    .fan-card:hover .fan-card-fill{width:100%}
-    .fan-card[data-c="guitar"]{--c:#e8620a}
-    .fan-card[data-c="piano"]{--c:#92400e}
-    .fan-card[data-c="canto"]{--c:#0891b2}
-    .fan-card[data-c="bateria"]{--c:#dc2626}
-    .fan-card[data-c="violin"]{--c:#1e5f44}
-    .fan-nav{display:flex;gap:8px;margin-top:36px;justify-content:center;position:relative;z-index:10}
-    .fan-dot{width:6px;height:6px;border-radius:50%;background:rgba(26,24,20,.18);cursor:pointer;transition:all .3s}
-    .fan-dot.active{background:var(--ink);transform:scale(1.4)}
+/* ═══════════════════════════════════════
+   PROGRAMS
+═══════════════════════════════════════ */
+#programas{border-bottom:var(--rule-h)}
+.pgm-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1px;background:var(--ink);
+}
+.pgm-cell{
+  background:var(--canvas);
+  padding:0;display:flex;flex-direction:column;
+  transition:background .2s;
+}
+.pgm-cell:hover{background:var(--canvas-2)}
+.pgm-cell-img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  filter:grayscale(100%) contrast(1.1);
+  transition:filter .3s var(--e);
+}
+.pgm-cell:hover .pgm-cell-img{filter:grayscale(60%) contrast(1.05)}
+.pgm-cell-body{
+  padding:20px 18px 24px;flex:1;
+  border-top:var(--rule);
+}
+.pgm-num{
+  font-size:8px;font-weight:700;color:var(--red);letter-spacing:.14em;margin-bottom:10px;display:block;
+}
+.pgm-name{
+  font-family:var(--display);font-size:clamp(20px,2.2vw,28px);
+  text-transform:uppercase;letter-spacing:-.02em;line-height:.9;
+  margin-bottom:12px;color:var(--ink);
+}
+.pgm-desc{font-size:10px;color:var(--ink-faint);line-height:1.65;letter-spacing:.04em}
+.pgm-bar{
+  margin-top:16px;height:1px;background:var(--ink);overflow:hidden;
+}
+.pgm-fill{
+  height:100%;width:0;background:var(--red);transition:width .8s var(--e);
+}
+.pgm-cell:hover .pgm-fill{width:100%}
 
-    /* ─── GALLERY (ACCORDION) ─── */
-    #galeria{background:var(--canvas-2)}
-    .gal-hd{text-align:center;margin-bottom:52px}
-    .gal-hd .lead{margin:0 auto}
-    .acc-gal{display:flex;height:480px;gap:5px;border-radius:24px;overflow:hidden}
-    .ag-item{flex:1;position:relative;overflow:hidden;cursor:pointer;transition:flex .65s var(--ease-out);min-width:52px}
-    .ag-item.open{flex:4}
-    .ag-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease-out)}
-    .ag-item:hover img,.ag-item.open img{transform:scale(1.04)}
-    .ag-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,24,20,.72) 0%,transparent 55%);opacity:0;transition:opacity .4s var(--ease)}
-    .ag-item.open .ag-overlay{opacity:1}
-    .ag-label{position:absolute;bottom:22px;left:22px;right:22px;color:var(--cream);opacity:0;transform:translateY(10px);transition:all .4s var(--ease);z-index:1}
-    .ag-item.open .ag-label{opacity:1;transform:none}
-    .ag-lname{font-family:'Bodoni Moda',serif;font-size:22px;font-weight:700;font-style:italic;display:block;margin-bottom:4px}
-    .ag-lsub{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;opacity:.55}
+/* ═══════════════════════════════════════
+   MANIFESTO
+═══════════════════════════════════════ */
+#manifesto{background:var(--ink);border-bottom:var(--rule-r)}
+.mf-wrap{
+  max-width:1060px;margin:0 auto;
+  padding:clamp(56px,8vw,100px) 24px;
+  display:grid;grid-template-columns:80px 1fr;gap:1px;background:rgba(255,255,255,.06);
+}
+.mf-marker{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 0;gap:8px;
+  padding-top:4px;
+}
+.mf-marker-line{width:1px;height:100%;background:rgba(255,255,255,.1)}
+.mf-marker-lbl{
+  font-size:8px;font-weight:700;color:var(--red);letter-spacing:.12em;
+  text-transform:uppercase;writing-mode:vertical-rl;letter-spacing:.14em;
+}
+.mf-body{padding:0 0 0 32px}
+.mf-tag{
+  font-size:9px;font-weight:700;color:rgba(255,255,255,.22);
+  letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:28px;
+}
+.mf-q{
+  font-family:var(--display);
+  font-size:clamp(28px,5vw,66px);
+  line-height:.9;letter-spacing:-.02em;text-transform:uppercase;
+  color:rgba(255,255,255,.88);
+  margin-bottom:32px;
+}
+.mf-q span{color:var(--red)}
+.mf-attr{font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.14em;text-transform:uppercase}
 
-    /* ─── PORTAL / ACCESO ─── */
-    #acceso{background:var(--canvas)}
-    .acc-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-    .acc-copy .eyebrow{margin-bottom:16px}
-    .acc-copy h2{margin-bottom:20px}
-    .acc-copy .lead{margin-bottom:36px}
-    .feats{display:flex;flex-direction:column;gap:18px;margin-bottom:40px}
-    .feat{display:flex;align-items:flex-start;gap:14px}
-    .feat-ico{width:40px;height:40px;border-radius:11px;background:var(--gold-l);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(201,150,10,.14);color:var(--gold)}
-    .feat-ico svg{width:18px;height:18px}
-    .feat-t{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;display:block}
-    .feat-d{font-size:13px;color:var(--muted);line-height:1.55}
-    /* glassmorphic portal card */
-    .portal-card{background:rgba(253,252,248,.65);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(253,252,248,.8);border-radius:28px;padding:36px;box-shadow:0 24px 60px rgba(26,24,20,.1),inset 0 1px 0 rgba(255,255,255,.8);position:relative;overflow:hidden}
-    .portal-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(201,150,10,.07) 0%,transparent 55%);pointer-events:none}
-    .pc-head{display:flex;align-items:center;gap:13px;margin-bottom:28px;position:relative}
-    .pc-avatar{width:48px;height:48px;border-radius:13px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-    .pc-avatar img{width:100%;height:100%;object-fit:contain}
-    .pc-name{font-family:'Bodoni Moda',serif;font-size:17px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.2}
-    .pc-role{font-size:12px;color:var(--muted);font-weight:600}
-    .pc-items{display:flex;flex-direction:column;gap:10px;position:relative}
-    .pc-item{background:rgba(26,24,20,.04);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:12px;transition:all .25s var(--ease)}
-    .pc-item:hover{background:rgba(26,24,20,.08);transform:translateX(4px)}
-    .pc-item-ico{width:34px;height:34px;border-radius:9px;background:var(--gold-l);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold)}
-    .pc-item-ico svg{width:16px;height:16px}
-    .pc-item-t{font-size:13px;font-weight:700;color:var(--ink)}
-    .pc-item-d{font-size:11px;color:var(--muted)}
-    .pc-cta{margin-top:24px;position:relative}
+/* ═══════════════════════════════════════
+   GALERÍA
+═══════════════════════════════════════ */
+#galeria .gal-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:1px;background:var(--ink);
+}
+.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--canvas-2)}
+.gi:nth-child(1){grid-row:1/3}
+.gi img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(100%) contrast(1.08);
+  transition:transform .5s var(--e),filter .5s var(--e);
+}
+.gi:hover img{transform:scale(1.04);filter:grayscale(40%)}
+.gi-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:var(--ink);padding:10px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:var(--rule-r);
+  transform:translateY(100%);
+  transition:transform .35s var(--e);
+}
+.gi:hover .gi-label{transform:none}
+.gi-name{font-family:var(--display);font-size:13px;text-transform:uppercase;color:#fff;letter-spacing:.02em}
+.gi-sub{font-size:8px;font-weight:700;color:rgba(255,255,255,.32);letter-spacing:.12em;text-transform:uppercase}
 
-    /* ─── FOOTER ─── */
-    footer{background:var(--ink);padding:64px 24px 36px;color:rgba(255,255,255,.45)}
-    .foot-inner{max-width:1040px;margin:0 auto}
-    .foot-top{display:flex;gap:48px;margin-bottom:60px;flex-wrap:wrap}
-    .foot-brand-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-    .foot-brand-row img{width:38px;height:38px;border-radius:9px;object-fit:contain}
-    .foot-brand-row span{font-family:'Bodoni Moda',serif;font-size:21px;font-weight:900;font-style:italic;color:rgba(255,255,255,.88)}
-    .foot-about{font-size:13px;line-height:1.72;max-width:250px;margin-right:auto}
-    .foot-col h4{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
-    .foot-col a{display:block;color:rgba(255,255,255,.5);text-decoration:none;font-size:14px;margin-bottom:10px;transition:color .2s}
-    .foot-col a:hover{color:rgba(255,255,255,.88)}
-    .foot-rule{width:100%;height:1px;background:rgba(255,255,255,.07);margin-bottom:24px}
-    .foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-    .foot-copy{font-size:12px}
-    .foot-badge{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.18);letter-spacing:1.8px;text-transform:uppercase}
+/* ═══════════════════════════════════════
+   PORTAL / ACCESO
+═══════════════════════════════════════ */
+#acceso .acc-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);
+  border-top:var(--rule);
+}
+.acc-copy{
+  background:var(--canvas);padding:clamp(40px,6vw,72px) clamp(24px,5vw,56px);
+  border-right:var(--rule);
+}
+.acc-copy h2{
+  font-family:var(--display);font-size:clamp(32px,5vw,56px);
+  text-transform:uppercase;letter-spacing:-.02em;line-height:.9;
+  margin-bottom:28px;
+}
+.acc-copy h2 span{color:var(--red)}
+.acc-lead{font-size:11px;color:var(--ink-faint);line-height:1.75;letter-spacing:.04em;margin-bottom:40px;max-width:380px}
+.feat-list{display:flex;flex-direction:column;gap:0;margin-bottom:40px;border:var(--rule)}
+.feat-row{
+  display:grid;grid-template-columns:52px 1fr;gap:1px;background:var(--ink);
+  border-bottom:var(--rule);
+}
+.feat-row:last-child{border-bottom:none}
+.feat-row>*{background:var(--canvas);padding:12px 14px}
+.feat-ico{
+  display:flex;align-items:center;justify-content:center;
+  border-right:var(--rule);
+  color:var(--red);
+}
+.feat-ico svg{width:16px;height:16px}
+.feat-t{font-size:10px;font-weight:700;color:var(--ink);display:block;margin-bottom:2px;letter-spacing:.06em;text-transform:uppercase}
+.feat-d{font-size:10px;color:var(--ink-faint);letter-spacing:.04em}
 
-    /* ─── REVEALS ─── */
-    .js-on .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
-    .js-on .reveal.in{opacity:1;transform:none}
-    .js-on .reveal[data-d="1"]{transition-delay:.1s}
-    .js-on .reveal[data-d="2"]{transition-delay:.2s}
-    .js-on .reveal[data-d="3"]{transition-delay:.3s}
+/* portal card side */
+.portal-panel{
+  background:var(--canvas);padding:clamp(40px,6vw,72px) clamp(24px,5vw,48px);
+}
+.pp-header{
+  display:grid;grid-template-columns:auto 1fr;gap:1px;background:var(--ink);
+  margin-bottom:0;border:var(--rule);
+}
+.pp-header>*{background:var(--canvas);padding:14px 16px}
+.pp-logo-cell{
+  display:flex;align-items:center;justify-content:center;
+  border-right:var(--rule);padding:12px;
+}
+.pp-logo-cell img{width:36px;height:36px;object-fit:contain;filter:grayscale(100%)}
+.pp-title-cell{}
+.pp-title{font-family:var(--display);font-size:16px;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+.pp-sub{font-size:9px;font-weight:600;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 
-    /* ─── SCROLL OFFSET ─── */
-    section[id]{scroll-margin-top:68px}
+.pp-rows{border:var(--rule);border-top:none;margin-bottom:0}
+.pp-row{
+  display:grid;grid-template-columns:44px 1fr 64px;gap:1px;background:var(--ink);
+  border-bottom:var(--rule);
+}
+.pp-row:last-child{border-bottom:none}
+.pp-row>*{background:var(--canvas);padding:12px 14px;display:flex;align-items:center}
+.pp-r-ico{justify-content:center;border-right:var(--rule);color:var(--ink-faint)}
+.pp-r-ico svg{width:14px;height:14px}
+.pp-r-t{flex-direction:column;align-items:flex-start;gap:1px}
+.pp-rt{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.pp-rd{font-size:9px;color:var(--ink-faint);letter-spacing:.04em}
+.pp-r-status{border-left:var(--rule);justify-content:center}
+.status-ok{width:6px;height:6px;background:#4AF626;border-radius:50%;animation:pulse-green 2s ease-in-out infinite}
+@keyframes pulse-green{0%,100%{opacity:1}50%{opacity:.4}}
 
-    /* ─── FOCUS ─── */
-    :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.pp-cta{border:var(--rule);border-top:none}
+.pp-cta a{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px;background:var(--red);
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;text-decoration:none;
+  transition:opacity .15s;
+}
+.pp-cta a:hover{opacity:.88}
+.pp-cta a:active{opacity:.72}
 
-    /* ─── RESPONSIVE ─── */
-    @media(max-width:1024px){
-      /* Disable fan deck — show simple grid */
-      .fan-stage{height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
-      .fan-card{position:relative;left:auto;top:auto;margin:0;transform:none!important;width:calc(33% - 10px);min-width:180px;height:auto}
-      .fan-card-img{height:140px}
-    }
-    @media(max-width:860px){
-      .acc-grid{grid-template-columns:1fr;gap:48px}
-      .acc-gal{height:380px}
-      .foot-top{flex-direction:column;gap:28px}
-    }
-    @media(max-width:560px){
-      nav{padding:0 20px}
-      .nav-r .nav-a{display:none}
-      h1{font-size:clamp(78px,22vw,130px);letter-spacing:-3px}
-      .fan-card{width:calc(50% - 8px);min-width:160px}
-      .acc-gal{flex-direction:column;height:auto}
-      .ag-item{flex:1;min-height:130px}
-      .ag-item.open{flex:2.5}
-      .hero-ctas{flex-direction:column;align-items:center}
-    }
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{background:var(--ink);border-top:var(--rule-r)}
+.ft-manifest{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.ft-col{
+  background:var(--ink);padding:36px 24px;
+}
+.ft-col-hd{
+  font-size:8px;font-weight:700;color:rgba(255,255,255,.2);
+  letter-spacing:.16em;text-transform:uppercase;
+  display:block;margin-bottom:18px;padding-bottom:10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.ft-brand-name{
+  font-family:var(--display);font-size:28px;
+  text-transform:uppercase;letter-spacing:-.02em;
+  color:#fff;line-height:.9;margin-bottom:12px;
+}
+.ft-brand-sub{font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.12em;text-transform:uppercase;line-height:1.7}
+.ft-col a{
+  display:block;color:rgba(255,255,255,.35);text-decoration:none;
+  font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:8px;transition:color .15s;
+}
+.ft-col a:hover{color:rgba(255,255,255,.85)}
+.ft-data p{font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.08em;margin-bottom:6px;line-height:1.6;text-transform:uppercase}
+.ft-data strong{color:rgba(255,255,255,.45)}
 
-    /* ─── REDUCED MOTION ─── */
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-      html{scroll-behavior:auto}
-      .js-on .reveal{opacity:1!important;transform:none!important;transition:none!important}
-    }
+.ft-bottom{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:1px;background:rgba(255,255,255,.06);
+}
+.ft-bottom>*{
+  background:var(--ink);padding:12px 24px;
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);display:flex;align-items:center;
+}
+.ft-copy-r{justify-content:flex-end}
+.ft-copy-c{justify-content:center;color:var(--red);font-weight:700}
+
+/* ═══════════════════════════════════════
+   REVEALS
+═══════════════════════════════════════ */
+.js-on .reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .7s var(--e) var(--rd,0s),transform .7s var(--e) var(--rd,0s);
+}
+.js-on .reveal.in{opacity:1;transform:none}
+.js-on .reveal[data-d="1"]{--rd:.08s}
+.js-on .reveal[data-d="2"]{--rd:.16s}
+.js-on .reveal[data-d="3"]{--rd:.24s}
+
+section[id]{scroll-margin-top:52px}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:1060px){
+  .pgm-grid{grid-template-columns:repeat(3,1fr)}
+  .pgm-cell:nth-child(n+4){display:none}
+  #galeria .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px}
+  .gi:nth-child(1){grid-row:auto}
+  .acc-inner{grid-template-columns:1fr}
+  .ft-manifest{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  .hero-body{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .hero-foot{grid-template-columns:1fr 1fr}
+  #nav .nav-links{display:none}
+  .sec-header{grid-template-columns:60px 1fr}
+  .sec-meta{display:none}
+  .mf-wrap{grid-template-columns:1fr}
+  .mf-marker{display:none}
+  .mf-body{padding:0}
+}
+@media(max-width:560px){
+  h1{font-size:clamp(72px,18vw,130px)}
+  .pgm-grid{grid-template-columns:1fr 1fr}
+  .pgm-cell:nth-child(n+4){display:flex}
+  #galeria .gal-grid{grid-template-columns:1fr;grid-template-rows:repeat(6,180px)}
+  .ft-manifest{grid-template-columns:1fr}
+  .ft-bottom{grid-template-columns:1fr}
+  .ft-copy-r,.ft-copy-c{justify-content:flex-start}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .js-on .reveal{opacity:1!important;transform:none!important;transition:none!important}
+}
   </style>
 </head>
 <body>
 
-<div class="noise-layer" aria-hidden="true"></div>
-<div class="orb orb-a" aria-hidden="true"></div>
-<div class="orb orb-b" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
 
-<!-- ══ NAV ══ -->
-<nav id="nav">
-  <a href="#" class="nav-brand">
-    <img src="assets/logo.jpg" alt="CEART"/>
-    <div>
-      <span class="nav-brand-name">CEART</span>
-      <span class="nav-brand-sub">Johann Sebastian Bach</span>
-    </div>
-  </a>
+<!-- ══════════════════════════════
+     NAV
+══════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Navegación principal">
+  <div class="nav-id">CEART / D-01 / REV 4.0</div>
+  <div class="nav-links">
+    <a href="#programas" class="nav-a">[ Programas ]</a>
+    <a href="#acceso"    class="nav-a">[ Portal ]</a>
+    <a href="#galeria"   class="nav-a">[ Galería ]</a>
+  </div>
   <div class="nav-r">
-    <a href="#programas" class="nav-a">Programas</a>
-    <a href="#acceso" class="nav-a">Portal</a>
-    <a href="#galeria" class="nav-a">Galería</a>
-    <a href="login.html" class="nav-btn">Acceder &rarr;</a>
+    <a href="login.html" class="nav-cta">Acceder &gt;&gt;</a>
   </div>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
 <section id="hero">
-  <div class="hero-badge">
-    <img src="assets/logo.jpg" alt=""/>
-    Centro Educativo y Artístico
+  <!-- metadata strip -->
+  <div class="hero-meta">
+    <div class="hero-meta-cell">
+      <span>Institución</span>
+      <strong>Centro Educativo y Artístico</strong>
+    </div>
+    <div class="hero-meta-cell">
+      <span>Ubicación</span>
+      <strong>Chilpancingo, Guerrero</strong>
+    </div>
+    <div class="hero-meta-cell">
+      <span>Programas activos</span>
+      <strong>05 / 05</strong>
+    </div>
+    <div class="hero-meta-cell red-cell">
+      <span>Estado</span>
+      <strong>/// INSCRIPCIONES ABIERTAS</strong>
+    </div>
   </div>
-  <h1>CEART</h1>
-  <p class="hero-sub">Johann Sebastian Bach</p>
-  <p class="hero-desc">Donde la <em>música toma vida</em> y el arte transforma.</p>
-  <div class="hero-ctas">
-    <a href="#programas" class="btn-p">Ver programas</a>
-    <a href="login.html" class="btn-g">Acceder al portal</a>
-  </div>
-  <span class="hero-loc">Monterrey, México</span>
-</section>
 
-<!-- ══ MANIFESTO ══ -->
-<section id="manifesto">
-  <div class="mf-inner">
-    <div class="mf-mark reveal"></div>
-    <p class="mf-quote reveal" data-d="1">"La escuela lleva el nombre de Bach.<br><strong>La música lleva el tuyo.</strong>"</p>
-    <span class="mf-attr reveal" data-d="2">CEART · Monterrey, México</span>
-  </div>
-</section>
-
-<!-- ══ PROGRAMAS (FAN DECK) ══ -->
-<section id="programas">
-  <div class="pgm-hd reveal">
-    <span class="eyebrow">Programas</span>
-    <h2>Tu instrumento.<br>Tu voz.</h2>
-    <p class="lead">Cinco caminos hacia la misma pasión.</p>
-  </div>
-  <div class="fan-stage" id="fanStage">
-    <div class="fan-card" data-c="guitar">
-      <img class="fan-card-img" src="https://picsum.photos/seed/guitar-warm-ceart/440/330" alt="Guitarra"/>
-      <div class="fan-card-body">
-        <span class="fan-card-num">01 &mdash; GUITARRA</span>
-        <div class="fan-card-name">Guitarra</div>
-        <p class="fan-card-desc">Desde los primeros acordes hasta técnicas avanzadas de fingerpicking y armonía.</p>
-        <div class="fan-card-bar"><div class="fan-card-fill"></div></div>
-      </div>
-    </div>
-    <div class="fan-card" data-c="piano">
-      <img class="fan-card-img" src="https://picsum.photos/seed/piano-keys-ceart/440/330" alt="Piano"/>
-      <div class="fan-card-body">
-        <span class="fan-card-num">02 &mdash; PIANO</span>
-        <div class="fan-card-name">Piano</div>
-        <p class="fan-card-desc">Teoría, lectura, técnica clásica y musicalidad desde el nivel inicial hasta avanzado.</p>
-        <div class="fan-card-bar"><div class="fan-card-fill"></div></div>
-      </div>
-    </div>
-    <div class="fan-card" data-c="canto">
-      <img class="fan-card-img" src="https://picsum.photos/seed/vocal-ceart-warm/440/330" alt="Canto"/>
-      <div class="fan-card-body">
-        <span class="fan-card-num">03 &mdash; CANTO</span>
-        <div class="fan-card-name">Canto</div>
-        <p class="fan-card-desc">Técnica vocal, respiración, proyección y repertorio para todos los géneros.</p>
-        <div class="fan-card-bar"><div class="fan-card-fill"></div></div>
-      </div>
-    </div>
-    <div class="fan-card" data-c="bateria">
-      <img class="fan-card-img" src="https://picsum.photos/seed/drums-rhythm-ceart/440/330" alt="Batería"/>
-      <div class="fan-card-body">
-        <span class="fan-card-num">04 &mdash; BATERÍA</span>
-        <div class="fan-card-name">Batería</div>
-        <p class="fan-card-desc">Ritmo, coordinación, rudimentos y ensamble con distintos géneros musicales.</p>
-        <div class="fan-card-bar"><div class="fan-card-fill"></div></div>
-      </div>
-    </div>
-    <div class="fan-card" data-c="violin">
-      <img class="fan-card-img" src="https://picsum.photos/seed/violin-strings-ceart/440/330" alt="Violín"/>
-      <div class="fan-card-body">
-        <span class="fan-card-num">05 &mdash; VIOLÍN</span>
-        <div class="fan-card-name">Violín</div>
-        <p class="fan-card-desc">Postura, afinación, arco y repertorio clásico en un ambiente cálido y estructurado.</p>
-        <div class="fan-card-bar"><div class="fan-card-fill"></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="fan-nav" id="fanNav" aria-hidden="true">
-    <div class="fan-dot active"></div>
-    <div class="fan-dot"></div>
-    <div class="fan-dot"></div>
-    <div class="fan-dot"></div>
-    <div class="fan-dot"></div>
-  </div>
-</section>
-
-<!-- ══ GALERÍA ══ -->
-<section id="galeria" class="sec">
-  <div class="w">
-    <div class="gal-hd">
-      <span class="eyebrow reveal">Galería</span>
-      <h2 class="reveal" data-d="1">La escuela<br>en imágenes</h2>
-      <p class="lead reveal" data-d="2">Espacios pensados para inspirar.</p>
-    </div>
-    <div class="acc-gal reveal" data-d="1">
-      <div class="ag-item open">
-        <img src="https://picsum.photos/seed/ceart-studio-main/800/600" alt="Estudio principal"/>
-        <div class="ag-overlay"></div>
-        <div class="ag-label"><span class="ag-lname">Estudio principal</span><span class="ag-lsub">Clases individuales</span></div>
-      </div>
-      <div class="ag-item">
-        <img src="https://picsum.photos/seed/ceart-recital-stage/800/600" alt="Recitales"/>
-        <div class="ag-overlay"></div>
-        <div class="ag-label"><span class="ag-lname">Recitales</span><span class="ag-lsub">Presentaciones mensuales</span></div>
-      </div>
-      <div class="ag-item">
-        <img src="https://picsum.photos/seed/ceart-guitar-warm/800/600" alt="Guitarra"/>
-        <div class="ag-overlay"></div>
-        <div class="ag-label"><span class="ag-lname">Guitarra</span><span class="ag-lsub">Todos los niveles</span></div>
-      </div>
-      <div class="ag-item">
-        <img src="https://picsum.photos/seed/ceart-piano-studio/800/600" alt="Piano"/>
-        <div class="ag-overlay"></div>
-        <div class="ag-label"><span class="ag-lname">Sala de Piano</span><span class="ag-lsub">Clases semanales</span></div>
-      </div>
-      <div class="ag-item">
-        <img src="https://picsum.photos/seed/ceart-ensemble-room/800/600" alt="Ensamble"/>
-        <div class="ag-overlay"></div>
-        <div class="ag-label"><span class="ag-lname">Ensamble</span><span class="ag-lsub">Música en conjunto</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PORTAL / ACCESO ══ -->
-<section id="acceso" class="sec">
-  <div class="w">
-    <div class="acc-grid">
-      <div class="acc-copy reveal">
-        <span class="eyebrow">Portal de acceso</span>
-        <h2>Tu escuela,<br>siempre contigo.</h2>
-        <p class="lead">Consulta horarios, sigue tu progreso y mantente conectado con tu comunidad musical.</p>
-        <div class="feats">
-          <div class="feat">
-            <div class="feat-ico">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="15" rx="2.5"/><path d="M6 1v4M14 1v4M2 8h16"/></svg>
-            </div>
-            <div><span class="feat-t">Horarios y clases</span><span class="feat-d">Consulta tu agenda y recibe recordatorios.</span></div>
-          </div>
-          <div class="feat">
-            <div class="feat-ico">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,14 7,8 12,12 18,5"/><path d="M2 18h16"/></svg>
-            </div>
-            <div><span class="feat-t">Seguimiento de progreso</span><span class="feat-d">Tus maestros registran avances y observaciones.</span></div>
-          </div>
-          <div class="feat">
-            <div class="feat-ico">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="5" width="18" height="12" rx="2.5"/><path d="M1 9h18M5 13h3"/></svg>
-            </div>
-            <div><span class="feat-t">Pagos y facturación</span><span class="feat-d">Historial de colegiaturas y comprobantes.</span></div>
-          </div>
-        </div>
-        <a href="login.html" class="btn-p">Entrar al portal &rarr;</a>
-      </div>
-      <div class="portal-card reveal" data-d="2">
-        <div class="pc-head">
-          <div class="pc-avatar"><img src="assets/logo.jpg" alt="CEART"/></div>
-          <div>
-            <div class="pc-name">CEART</div>
-            <div class="pc-role">Portal de alumnos y maestros</div>
-          </div>
-        </div>
-        <div class="pc-items">
-          <div class="pc-item">
-            <div class="pc-item-ico">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="6" r="4"/><path d="M2 19c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-            </div>
-            <div><div class="pc-item-t">Mi perfil</div><div class="pc-item-d">Información personal y estado de cuenta</div></div>
-          </div>
-          <div class="pc-item">
-            <div class="pc-item-ico">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="15" rx="2.5"/><path d="M6 1v4M14 1v4M2 8h16M6 13h5"/></svg>
-            </div>
-            <div><div class="pc-item-t">Próxima clase</div><div class="pc-item-d">Lunes · 4:00 pm · Guitarra</div></div>
-          </div>
-          <div class="pc-item">
-            <div class="pc-item-ico">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M11 2v6h6M7 13h6M7 10h4"/></svg>
-            </div>
-            <div><div class="pc-item-t">Material del curso</div><div class="pc-item-d">3 archivos nuevos disponibles</div></div>
-          </div>
-        </div>
-        <div class="pc-cta">
-          <a href="login.html" class="btn-gold">Iniciar sesión</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="foot-inner">
-    <div class="foot-top">
+  <!-- body -->
+  <div class="hero-body">
+    <div class="hero-left">
       <div>
-        <div class="foot-brand-row">
-          <img src="assets/logo.jpg" alt="CEART"/>
-          <span>CEART</span>
+        <p class="hero-label">Johann Sebastian Bach</p>
+        <h1>CEART</h1>
+      </div>
+      <div>
+        <div class="hero-sub-block">
+          <div class="hero-sub-name">Música · Arte · Educación</div>
+          <div class="hero-sub-desc">
+            Guitarra &nbsp;/&nbsp; Piano &nbsp;/&nbsp; Canto &nbsp;/&nbsp; Batería &nbsp;/&nbsp; Violín<br/>
+            Clases individuales y grupales — todos los niveles
+          </div>
         </div>
-        <p class="foot-about">Centro Educativo y Artístico Johann Sebastian Bach. Formando músicos desde Monterrey.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Programas</h4>
-        <a href="#programas">Guitarra</a>
-        <a href="#programas">Piano</a>
-        <a href="#programas">Canto</a>
-        <a href="#programas">Batería</a>
-        <a href="#programas">Violín</a>
-      </div>
-      <div class="foot-col">
-        <h4>Portal</h4>
-        <a href="login.html">Iniciar sesión</a>
-        <a href="login.html">Portal de alumnos</a>
-        <a href="login.html">Portal de maestros</a>
       </div>
     </div>
-    <div class="foot-rule"></div>
-    <div class="foot-bot">
-      <span class="foot-copy">&copy; 2026 CEART &mdash; Johann Sebastian Bach &mdash; Monterrey, México</span>
-      <span class="foot-badge">Arte · Música · Educación</span>
+    <div class="hero-right">
+      <div class="hero-coords">
+        <div>
+          <span class="coord-label">LAT</span>
+          <span class="coord-val">17.5506° N</span>
+        </div>
+        <div>
+          <span class="coord-label">LON</span>
+          <span class="coord-val">99.5009° W</span>
+        </div>
+      </div>
+      <div class="hero-crosshair">
+        <div class="cross-center">
+          <div class="cross-ring"></div>
+        </div>
+      </div>
+      <div class="hero-cta-block">
+        <a href="#programas" class="btn-primary">Ver programas &gt;&gt;</a>
+        <a href="login.html" class="btn-secondary">[ Portal ] &rarr;</a>
+      </div>
     </div>
+  </div>
+
+  <!-- footer strip -->
+  <div class="hero-foot">
+    <div class="hf-ref">CEART-MX &mdash; CHI-GRO-001</div>
+    <div></div>
+    <div class="hf-sch">/// INSCRIPCIONES ABIERTAS</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     TICKER
+══════════════════════════════ -->
+<div class="ticker-band" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="tick-item"><span class="tick-sep">//</span> GUITARRA</span>
+    <span class="tick-item"><span class="tick-sep">//</span> PIANO</span>
+    <span class="tick-item"><span class="tick-sep">//</span> CANTO</span>
+    <span class="tick-item"><span class="tick-sep">//</span> BATERÍA</span>
+    <span class="tick-item"><span class="tick-sep">//</span> VIOLÍN</span>
+    <span class="tick-item"><span class="tick-sep">//</span> BACH</span>
+    <span class="tick-item"><span class="tick-sep">//</span> CHILPANCINGO, GRO</span>
+    <span class="tick-item"><span class="tick-sep">//</span> GUITARRA</span>
+    <span class="tick-item"><span class="tick-sep">//</span> PIANO</span>
+    <span class="tick-item"><span class="tick-sep">//</span> CANTO</span>
+    <span class="tick-item"><span class="tick-sep">//</span> BATERÍA</span>
+    <span class="tick-item"><span class="tick-sep">//</span> VIOLÍN</span>
+    <span class="tick-item"><span class="tick-sep">//</span> BACH</span>
+    <span class="tick-item"><span class="tick-sep">//</span> CHILPANCINGO, GRO</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     MANIFESTO
+══════════════════════════════ -->
+<section id="manifesto" class="sec reveal">
+  <div class="mf-wrap">
+    <div class="mf-marker">
+      <div class="mf-marker-line"></div>
+      <span class="mf-marker-lbl">BACH</span>
+    </div>
+    <div class="mf-body">
+      <span class="mf-tag">[ DECLARACIÓN ] &mdash; UNIDAD D-01</span>
+      <p class="mf-q">LA ESCUELA LLEVA<br/>EL NOMBRE DE BACH.<br/><span>LA MÚSICA<br/>LLEVA EL TUYO.</span></p>
+      <span class="mf-attr">CEART &mdash; CHILPANCINGO, GUERRERO &mdash; MX</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PROGRAMAS
+══════════════════════════════ -->
+<section id="programas" class="sec">
+  <div class="sec-header reveal">
+    <div class="sec-idx">02</div>
+    <div class="sec-title">Programas</div>
+    <div class="sec-meta">[ 01 — 05 ] / Activos</div>
+  </div>
+  <div class="pgm-grid">
+    <div class="pgm-cell reveal">
+      <img class="pgm-cell-img" src="https://picsum.photos/seed/guitar-warm/440/330" alt="Guitarra"/>
+      <div class="pgm-cell-body">
+        <span class="pgm-num">// 01 &mdash; GUITARRA</span>
+        <div class="pgm-name">Gui-<br/>tarra</div>
+        <p class="pgm-desc">Clásica y eléctrica. Desde los primeros acordes hasta técnicas avanzadas de armonía.</p>
+        <div class="pgm-bar"><div class="pgm-fill"></div></div>
+      </div>
+    </div>
+    <div class="pgm-cell reveal" data-d="1">
+      <img class="pgm-cell-img" src="https://picsum.photos/seed/piano-warm/440/330" alt="Piano"/>
+      <div class="pgm-cell-body">
+        <span class="pgm-num">// 02 &mdash; PIANO</span>
+        <div class="pgm-name">Piano</div>
+        <p class="pgm-desc">Técnica, teoría y repertorio musical completo. Todos los niveles.</p>
+        <div class="pgm-bar"><div class="pgm-fill"></div></div>
+      </div>
+    </div>
+    <div class="pgm-cell reveal" data-d="2">
+      <img class="pgm-cell-img" src="https://picsum.photos/seed/vocal-ceart/440/330" alt="Canto"/>
+      <div class="pgm-cell-body">
+        <span class="pgm-num">// 03 &mdash; CANTO</span>
+        <div class="pgm-name">Canto</div>
+        <p class="pgm-desc">Técnica vocal, respiración, proyección y repertorio para todos los géneros.</p>
+        <div class="pgm-bar"><div class="pgm-fill"></div></div>
+      </div>
+    </div>
+    <div class="pgm-cell reveal" data-d="1">
+      <img class="pgm-cell-img" src="https://picsum.photos/seed/drums-ceart/440/330" alt="Batería"/>
+      <div class="pgm-cell-body">
+        <span class="pgm-num">// 04 &mdash; BATERÍA</span>
+        <div class="pgm-name">Bate-<br/>ría</div>
+        <p class="pgm-desc">Ritmo, coordinación, rudimentos y ensamble. Estilos variados.</p>
+        <div class="pgm-bar"><div class="pgm-fill"></div></div>
+      </div>
+    </div>
+    <div class="pgm-cell reveal" data-d="2">
+      <img class="pgm-cell-img" src="https://picsum.photos/seed/violin-ceart/440/330" alt="Violín"/>
+      <div class="pgm-cell-body">
+        <span class="pgm-num">// 05 &mdash; VIOLÍN</span>
+        <div class="pgm-name">Violín</div>
+        <p class="pgm-desc">Postura, afinación, arco y repertorio clásico desde los fundamentos.</p>
+        <div class="pgm-bar"><div class="pgm-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     GALERÍA
+══════════════════════════════ -->
+<section id="galeria" class="sec">
+  <div class="sec-header reveal">
+    <div class="sec-idx">03</div>
+    <div class="sec-title">Galería</div>
+    <div class="sec-meta">[ ARCHIVO VISUAL ]</div>
+  </div>
+  <div class="gal-grid reveal" data-d="1">
+    <div class="gi">
+      <img src="https://picsum.photos/seed/ceart-main/800/600" alt="Estudio principal"/>
+      <div class="gi-label">
+        <span class="gi-name">Estudio Principal</span>
+        <span class="gi-sub">// Clases</span>
+      </div>
+    </div>
+    <div class="gi">
+      <img src="https://picsum.photos/seed/ceart-stage/800/600" alt="Recitales"/>
+      <div class="gi-label">
+        <span class="gi-name">Recitales</span>
+        <span class="gi-sub">// Mensual</span>
+      </div>
+    </div>
+    <div class="gi">
+      <img src="https://picsum.photos/seed/ceart-guitar2/800/600" alt="Guitarra"/>
+      <div class="gi-label">
+        <span class="gi-name">Guitarra</span>
+        <span class="gi-sub">// Niveles</span>
+      </div>
+    </div>
+    <div class="gi">
+      <img src="https://picsum.photos/seed/ceart-piano2/800/600" alt="Piano"/>
+      <div class="gi-label">
+        <span class="gi-name">Piano</span>
+        <span class="gi-sub">// Semanal</span>
+      </div>
+    </div>
+    <div class="gi">
+      <img src="https://picsum.photos/seed/ceart-ensemble/800/600" alt="Ensamble"/>
+      <div class="gi-label">
+        <span class="gi-name">Ensamble</span>
+        <span class="gi-sub">// Conjunto</span>
+      </div>
+    </div>
+    <div class="gi" style="background:var(--ink);display:flex;align-items:center;justify-content:center;padding:24px">
+      <div style="text-align:center">
+        <div style="font-family:var(--display);font-size:clamp(28px,4vw,48px);color:#fff;text-transform:uppercase;letter-spacing:-.02em;line-height:.9;margin-bottom:14px">Inscríbete<br/>hoy</div>
+        <a href="login.html" style="display:inline-block;padding:10px 22px;background:var(--red);color:#fff;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">&gt;&gt; Portal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PORTAL / ACCESO
+══════════════════════════════ -->
+<section id="acceso" class="sec">
+  <div class="sec-header reveal">
+    <div class="sec-idx">04</div>
+    <div class="sec-title">Portal de Acceso</div>
+    <div class="sec-meta">[ ALUMNOS / MAESTROS ]</div>
+  </div>
+  <div class="acc-inner">
+    <div class="acc-copy reveal">
+      <h2>Tu escuela.<br/><span>Siempre</span><br/>contigo.</h2>
+      <p class="acc-lead">Consulta horarios, sigue tu progreso y mantente conectado con tu comunidad musical desde cualquier dispositivo.</p>
+      <div class="feat-list">
+        <div class="feat-row">
+          <div class="feat-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="15" rx="1"/><path d="M6 1v4M14 1v4M2 8h16"/></svg></div>
+          <div><span class="feat-t">Horarios y clases</span><span class="feat-d">Consulta tu agenda y recibe recordatorios</span></div>
+        </div>
+        <div class="feat-row">
+          <div class="feat-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,14 7,8 12,12 18,5"/></svg></div>
+          <div><span class="feat-t">Seguimiento de progreso</span><span class="feat-d">Avances y observaciones de tus maestros</span></div>
+        </div>
+        <div class="feat-row">
+          <div class="feat-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="5" width="18" height="12" rx="1"/><path d="M1 9h18"/></svg></div>
+          <div><span class="feat-t">Pagos y facturación</span><span class="feat-d">Historial de colegiaturas y comprobantes</span></div>
+        </div>
+      </div>
+      <a href="login.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;width:fit-content;padding:14px 24px">
+        &gt;&gt; Entrar al portal
+      </a>
+    </div>
+
+    <div class="portal-panel reveal" data-d="2">
+      <div class="pp-header">
+        <div class="pp-logo-cell"><img src="assets/logo.jpg" alt="CEART"/></div>
+        <div class="pp-title-cell">
+          <div class="pp-title">CEART</div>
+          <div class="pp-sub">Portal de alumnos y maestros</div>
+        </div>
+      </div>
+      <div class="pp-rows">
+        <div class="pp-row">
+          <div class="pp-r-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="6" r="4"/><path d="M2 19c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div class="pp-r-t"><span class="pp-rt">Mi perfil</span><span class="pp-rd">Información personal y estado de cuenta</span></div>
+          <div class="pp-r-status"><span class="status-ok"></span></div>
+        </div>
+        <div class="pp-row">
+          <div class="pp-r-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="15" rx="1"/><path d="M6 1v4M14 1v4M2 8h16M6 13h5"/></svg></div>
+          <div class="pp-r-t"><span class="pp-rt">Próxima clase</span><span class="pp-rd">Lunes · 16:00 · Guitarra</span></div>
+          <div class="pp-r-status"><span class="status-ok"></span></div>
+        </div>
+        <div class="pp-row">
+          <div class="pp-r-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M11 2v6h6M7 13h6M7 10h4"/></svg></div>
+          <div class="pp-r-t"><span class="pp-rt">Material del curso</span><span class="pp-rd">3 archivos nuevos disponibles</span></div>
+          <div class="pp-r-status"><span class="status-ok"></span></div>
+        </div>
+      </div>
+      <div class="pp-cta">
+        <a href="login.html">&gt;&gt; INICIAR SESIÓN</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <div class="ft-manifest">
+    <div class="ft-col">
+      <span class="ft-col-hd">// UNIDAD</span>
+      <div class="ft-brand-name">CEART</div>
+      <p class="ft-brand-sub">Centro Educativo<br/>y Artístico<br/>Johann Sebastian Bach</p>
+    </div>
+    <div class="ft-col">
+      <span class="ft-col-hd">// PROGRAMAS</span>
+      <a href="#programas">// 01 — Guitarra</a>
+      <a href="#programas">// 02 — Piano</a>
+      <a href="#programas">// 03 — Canto</a>
+      <a href="#programas">// 04 — Batería</a>
+      <a href="#programas">// 05 — Violín</a>
+    </div>
+    <div class="ft-col">
+      <span class="ft-col-hd">// PORTAL</span>
+      <a href="login.html">Iniciar sesión</a>
+      <a href="login.html">Portal de alumnos</a>
+      <a href="login.html">Portal de maestros</a>
+    </div>
+    <div class="ft-col ft-data">
+      <span class="ft-col-hd">// DATOS TÉCNICOS</span>
+      <p><strong>LAT</strong> 17.5506° N</p>
+      <p><strong>LON</strong> 99.5009° W</p>
+      <p><strong>LOC</strong> Chilpancingo, GRO</p>
+      <p><strong>REV</strong> 4.0 / 2026</p>
+      <p><strong>SYS</strong> D-01 / ACTIVO</p>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div>&copy; 2026 CEART &mdash; Johann Sebastian Bach</div>
+    <div class="ft-copy-c">[ Arte · Música · Educación ]</div>
+    <div class="ft-copy-r">Chilpancingo, Guerrero, México</div>
   </div>
 </footer>
 
-<!-- ══ SCRIPTS ══ -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  // ── LENIS SMOOTH SCROLL ──
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: t => 1 - Math.pow(2, -10 * t),
+// ── LENIS ──
+const lenis = new Lenis({ duration: 1.1, easing: t => 1 - Math.pow(2, -10 * t) });
+function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+// ── REVEALS ──
+document.documentElement.classList.add('js-on');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); }
   });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(t => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-  // ── REVEALS ──
-  document.documentElement.classList.add('js-on');
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-
-  // ── NAV ──
-  const navEl = document.getElementById('nav');
-  new IntersectionObserver(([e]) => navEl.classList.toggle('scrolled', !e.isIntersecting),
-    { rootMargin: '-1px 0px 0px 0px', threshold: 0 }
-  ).observe(document.getElementById('hero'));
-
-  // Active nav links
-  const spy = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.nav-a').forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
-        });
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
-
-  // ── FAN DECK ──
-  const isFanEnabled = window.innerWidth > 1024
-    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (isFanEnabled) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const cards = gsap.utils.toArray('.fan-card');
-    const dots  = document.querySelectorAll('.fan-dot');
-
-    // Target fan positions [x, rotation, y]
-    const pos = [
-      [-340, -13,  18],
-      [-170, -6.5,  5],
-      [   0,   0,   0],
-      [ 170,  6.5,  5],
-      [ 340,  13,  18],
-    ];
-
-    // Z-order: middle card on top
-    gsap.set(cards, { zIndex: (i) => [1, 2, 5, 2, 1][i] });
-
-    const fanTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#programas',
-        pin: true,
-        scrub: 1.4,
-        start: 'top top',
-        end: '+=260%',
-        anticipatePin: 1,
-        onUpdate(self) {
-          // Update active dot based on scroll progress
-          const idx = Math.round(self.progress * 4);
-          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-        }
-      }
-    });
-
-    cards.forEach((card, i) => {
-      fanTl.to(card, {
-        x: pos[i][0],
-        rotation: pos[i][1],
-        y: pos[i][2],
-        ease: 'power2.out',
-        duration: 1,
-      }, 0);
-    });
-
-    // Fade in section header before fan
-    fanTl.from('.pgm-hd', { opacity: 0, y: 20, duration: 0.4, ease: 'power2.out' }, 0);
-  }
-
-  // ── ACCORDION GALLERY ──
-  const agItems = document.querySelectorAll('.ag-item');
-  const openGal = (item) => {
-    agItems.forEach(i => i.classList.remove('open'));
-    item.classList.add('open');
-  };
-  agItems.forEach(item => {
-    item.addEventListener('mouseenter', () => openGal(item));
-    item.addEventListener('click',      () => openGal(item));
-    item.addEventListener('focus',      () => openGal(item));
+// ── NAV active spy ──
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-a').forEach(a =>
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)
+      );
+    }
   });
-  // Reset to first on mouse leave
-  document.querySelector('.acc-gal').addEventListener('mouseleave', () => {
-    agItems.forEach(i => i.classList.remove('open'));
-    agItems[0].classList.add('open');
-  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
 
-  // ── SERVICE WORKER ──
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+// ── SERVICE WORKER ──
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
 </script>
 </body>
 </html>
