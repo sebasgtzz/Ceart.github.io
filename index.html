@@ -1,952 +1,447 @@
-<!DOCTYPE html>
-<html lang="es-MX">
+!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="theme-color" content="#E61919"/>
-  <meta name="description" content="Centro Educativo y Artístico Johann Sebastian Bach — Chilpancingo, Guerrero. Guitarra, piano, canto, batería, violín."/>
-  <meta property="og:title" content="CEART — Centro Educativo y Artístico"/>
-  <meta property="og:description" content="Escuela de música en Chilpancingo, Guerrero. Cinco programas, maestros dedicados."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="assets/logo.jpg"/>
-  <title>CEART — Centro Educativo y Artístico</title>
-  <link rel="manifest" href="manifest.json"/>
-  <link rel="icon" href="assets/logo.jpg" type="image/jpeg"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-/* ═══════════════════════════════════════
-   RESET
-═══════════════════════════════════════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEART - Centro de Artes</title>
+    <style>
+        :root {
+            --color-negro: #010101;
+            --color-amarillo: #ffbb08;
+            --color-blanco: #fffcfc;
+            --color-gris-claro: #f4f4f4;
+            --color-gris-oscuro: #1a1a1a;
+        }
 
-/* ═══════════════════════════════════════
-   TOKENS — SWISS INDUSTRIAL PRINT
-═══════════════════════════════════════ */
-:root{
-  --canvas:#EAE8E3;
-  --canvas-2:#DDDBD6;
-  --ink:#0A0A09;
-  --ink-mid:#3A3835;
-  --ink-faint:#7A786F;
-  --red:#E61919;
-  --rule:1px solid var(--ink);
-  --rule-h:2px solid var(--ink);
-  --rule-r:3px solid var(--red);
-  --mono:'JetBrains Mono',monospace;
-  --display:'Archivo Black',sans-serif;
-  --e:cubic-bezier(.32,.72,0,1);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-/* ═══════════════════════════════════════
-   GLOBAL
-═══════════════════════════════════════ */
-html{scroll-behavior:smooth}
-body{
-  font-family:var(--mono);
-  background:var(--canvas);
-  color:var(--ink);
-  line-height:1.5;
-  overflow-x:hidden;
-}
+        body {
+            background-color: var(--color-blanco);
+            color: var(--color-negro);
+            line-height: 1.6;
+        }
 
-/* Mechanical noise — fixed, pointer-events-none */
-.noise{
-  position:fixed;inset:0;z-index:9000;
-  pointer-events:none;opacity:.045;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px 200px;
-}
+        /* Header & Navegación */
+        header {
+            background-color: var(--color-negro);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
-/* ═══════════════════════════════════════
-   NAV — full-width strip
-═══════════════════════════════════════ */
-#nav{
-  position:fixed;inset:0 0 auto 0;z-index:200;
-  background:var(--ink);
-  border-bottom:var(--rule-r);
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;height:52px;
-  padding:0 24px;
-}
-.nav-id{
-  font-family:var(--mono);font-size:10px;font-weight:700;
-  color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;
-  display:flex;align-items:center;gap:12px;
-}
-.nav-id::before{content:'[ SYS ]';color:var(--red);font-size:9px}
-.nav-links{
-  display:flex;align-items:center;gap:0;
-  border-left:1px solid rgba(255,255,255,.1);
-  border-right:1px solid rgba(255,255,255,.1);
-}
-.nav-a{
-  color:rgba(255,255,255,.45);text-decoration:none;
-  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;padding:0 18px;height:52px;
-  display:flex;align-items:center;
-  border-right:1px solid rgba(255,255,255,.08);
-  transition:color .15s,background .15s;
-}
-.nav-a:last-child{border-right:none}
-.nav-a:hover,.nav-a.active{color:#fff;background:rgba(255,255,255,.06)}
-.nav-r{
-  display:flex;justify-content:flex-end;
-}
-.nav-cta{
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  padding:8px 18px;background:var(--red);color:#fff;
-  text-decoration:none;border:none;cursor:pointer;
-  transition:opacity .15s;white-space:nowrap;
-}
-.nav-cta:hover{opacity:.85}
-.nav-cta:active{opacity:.7}
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
 
-/* ═══════════════════════════════════════
-   GRID DIVIDER TRICK
-   Parent bg = divider color, gap:1px, children bg = canvas
-═══════════════════════════════════════ */
-.gd{display:grid;gap:1px;background:var(--ink)}
-.gd>*{background:var(--canvas)}
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
-#hero{
-  min-height:100dvh;
-  padding-top:52px;
-  display:grid;
-  grid-template-rows:auto 1fr auto;
-  border-bottom:var(--rule-h);
-}
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 5px;
+            background-color: var(--color-blanco);
+            padding: 2px;
+        }
 
-/* top metadata strip */
-.hero-meta{
-  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:1px;background:var(--ink);
-  border-bottom:var(--rule);
-}
-.hero-meta-cell{
-  background:var(--canvas);
-  padding:10px 16px;
-  font-size:9px;font-weight:600;color:var(--ink-faint);
-  letter-spacing:.1em;text-transform:uppercase;
-  display:flex;flex-direction:column;gap:3px;
-}
-.hero-meta-cell strong{color:var(--ink);font-weight:700;font-size:10px}
-.hero-meta-cell.red-cell{background:var(--red)}
-.hero-meta-cell.red-cell,.hero-meta-cell.red-cell strong{color:#fff}
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-/* main hero body */
-.hero-body{
-  display:grid;grid-template-columns:1fr 380px;
-  border-bottom:var(--rule);
-}
-.hero-left{
-  padding:48px 40px 48px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  border-right:var(--rule);
-}
-.hero-label{
-  font-size:9px;font-weight:700;color:var(--ink-faint);letter-spacing:.16em;text-transform:uppercase;
-  display:flex;align-items:center;gap:10px;margin-bottom:32px;
-}
-.hero-label::before{content:'';display:block;width:24px;height:1px;background:var(--red)}
-h1{
-  font-family:var(--display);
-  font-size:clamp(96px,17vw,220px);
-  line-height:.83;letter-spacing:-.03em;
-  color:var(--ink);text-transform:uppercase;
-  margin-bottom:0;
-}
-.hero-sub-block{
-  display:grid;grid-template-columns:auto 1fr;gap:1px;background:var(--ink);
-  margin-top:40px;
-}
-.hero-sub-block>*{background:var(--canvas);padding:12px 16px}
-.hero-sub-name{
-  font-family:var(--display);font-size:clamp(13px,1.6vw,16px);
-  text-transform:uppercase;letter-spacing:.04em;
-  border-right:var(--rule);white-space:nowrap;
-}
-.hero-sub-desc{font-size:11px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;line-height:1.7}
+        .nav-links a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
 
-.hero-right{
-  display:flex;flex-direction:column;
-}
-.hero-coords{
-  padding:16px;border-bottom:var(--rule);
-  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);
-}
-.hero-coords>*{background:var(--canvas);padding:8px 10px}
-.coord-label{font-size:8px;font-weight:700;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase;display:block;margin-bottom:3px}
-.coord-val{font-size:12px;font-weight:700;color:var(--ink);letter-spacing:.04em}
+        .nav-links a:hover {
+            color: var(--color-amarillo);
+        }
 
-.hero-crosshair{
-  flex:1;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  background:var(--canvas);
-}
-/* crosshair lines */
-.hero-crosshair::before,.hero-crosshair::after{
-  content:'';position:absolute;background:rgba(10,10,9,.1);pointer-events:none;
-}
-.hero-crosshair::before{width:1px;top:0;bottom:0;left:50%}
-.hero-crosshair::after{height:1px;left:0;right:0;top:50%}
-.cross-center{
-  width:40px;height:40px;
-  position:relative;
-}
-.cross-center::before,.cross-center::after{content:'';position:absolute;background:var(--ink)}
-.cross-center::before{width:1px;height:100%;left:50%;top:0}
-.cross-center::after{height:1px;width:100%;top:50%;left:0}
-.cross-ring{
-  width:40px;height:40px;border:1px solid var(--ink);border-radius:50%;
-  position:relative;
-  animation:spin-slow 20s linear infinite;
-}
-@keyframes spin-slow{to{transform:rotate(360deg)}}
+        .btn-login {
+            background-color: var(--color-amarillo);
+            color: var(--color-negro);
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.hero-cta-block{
-  border-top:var(--rule);padding:16px;
-  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);
-}
-.hero-cta-block>*{background:var(--canvas)}
-.btn-primary{
-  font-family:var(--mono);font-size:10px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:14px 16px;background:var(--ink);color:#fff;
-  text-decoration:none;text-align:center;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:opacity .15s;
-}
-.btn-primary:hover{opacity:.8}
-.btn-primary:active{opacity:.65}
-.btn-secondary{
-  font-family:var(--mono);font-size:10px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:14px 16px;background:var(--canvas);color:var(--ink);
-  border:none;text-decoration:none;text-align:center;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:background .15s;cursor:pointer;
-}
-.btn-secondary:hover{background:var(--canvas-2)}
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 187, 8, 0.4);
+            background-color: #e5a807;
+        }
 
-/* hero footer strip */
-.hero-foot{
-  display:grid;grid-template-columns:auto 1fr auto;
-  gap:1px;background:var(--ink);
-}
-.hero-foot>*{background:var(--canvas);padding:10px 16px;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center}
-.hf-ref::before{content:'REF//';margin-right:6px;color:var(--red);font-size:8px}
-.hf-sch{color:var(--red);font-weight:700;justify-content:flex-end}
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(1, 1, 1, 0.7), rgba(1, 1, 1, 0.7)), 
+                        url('Ceart%20imagenes/657714758_18166184029412828_6554808545444732407_n.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-blanco);
+        }
 
-/* ═══════════════════════════════════════
-   TICKER / DATA STREAM
-═══════════════════════════════════════ */
-.ticker-band{
-  background:var(--ink);border-bottom:var(--rule-r);
-  overflow:hidden;padding:11px 0;
-}
-.ticker-track{
-  display:flex;width:max-content;
-  animation:ticker 22s linear infinite;
-}
-.ticker-band:hover .ticker-track{animation-play-state:paused}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.tick-item{
-  display:inline-flex;align-items:center;gap:14px;
-  padding:0 28px;white-space:nowrap;
-  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.3);
-}
-.tick-sep{color:var(--red);font-size:11px}
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-/* ═══════════════════════════════════════
-   SECTION COMMON
-═══════════════════════════════════════ */
-.sec{border-bottom:var(--rule-h)}
-.sec-header{
-  display:grid;grid-template-columns:80px 1fr auto;
-  gap:1px;background:var(--ink);
-  border-bottom:var(--rule);
-}
-.sec-header>*{background:var(--canvas);padding:14px 20px;display:flex;align-items:center}
-.sec-idx{
-  font-size:9px;font-weight:700;color:var(--red);letter-spacing:.1em;
-  justify-content:center;text-align:center;border-right:var(--rule);font-family:var(--mono);
-}
-.sec-title{
-  font-family:var(--display);font-size:clamp(18px,3vw,28px);
-  letter-spacing:-.01em;text-transform:uppercase;
-}
-.sec-meta{
-  font-size:9px;font-weight:600;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;
-  justify-content:flex-end;
-}
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-/* ═══════════════════════════════════════
-   PROGRAMS
-═══════════════════════════════════════ */
-#programas{border-bottom:var(--rule-h)}
-.pgm-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:1px;background:var(--ink);
-}
-.pgm-cell{
-  background:var(--canvas);
-  padding:0;display:flex;flex-direction:column;
-  transition:background .2s;
-}
-.pgm-cell:hover{background:var(--canvas-2)}
-.pgm-cell-img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
-  filter:grayscale(100%) contrast(1.1);
-  transition:filter .3s var(--e);
-}
-.pgm-cell:hover .pgm-cell-img{filter:grayscale(60%) contrast(1.05)}
-.pgm-cell-body{
-  padding:20px 18px 24px;flex:1;
-  border-top:var(--rule);
-}
-.pgm-num{
-  font-size:8px;font-weight:700;color:var(--red);letter-spacing:.14em;margin-bottom:10px;display:block;
-}
-.pgm-name{
-  font-family:var(--display);font-size:clamp(20px,2.2vw,28px);
-  text-transform:uppercase;letter-spacing:-.02em;line-height:.9;
-  margin-bottom:12px;color:var(--ink);
-}
-.pgm-desc{font-size:10px;color:var(--ink-faint);line-height:1.65;letter-spacing:.04em}
-.pgm-bar{
-  margin-top:16px;height:1px;background:var(--ink);overflow:hidden;
-}
-.pgm-fill{
-  height:100%;width:0;background:var(--red);transition:width .8s var(--e);
-}
-.pgm-cell:hover .pgm-fill{width:100%}
+        .btn-hero {
+            background-color: var(--color-amarillo);
+            color: var(--color-negro);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-/* ═══════════════════════════════════════
-   MANIFESTO
-═══════════════════════════════════════ */
-#manifesto{background:var(--ink);border-bottom:var(--rule-r)}
-.mf-wrap{
-  max-width:1060px;margin:0 auto;
-  padding:clamp(56px,8vw,100px) 24px;
-  display:grid;grid-template-columns:80px 1fr;gap:1px;background:rgba(255,255,255,.06);
-}
-.mf-marker{
-  display:flex;flex-direction:column;align-items:center;
-  padding:0 0;gap:8px;
-  padding-top:4px;
-}
-.mf-marker-line{width:1px;height:100%;background:rgba(255,255,255,.1)}
-.mf-marker-lbl{
-  font-size:8px;font-weight:700;color:var(--red);letter-spacing:.12em;
-  text-transform:uppercase;writing-mode:vertical-rl;letter-spacing:.14em;
-}
-.mf-body{padding:0 0 0 32px}
-.mf-tag{
-  font-size:9px;font-weight:700;color:rgba(255,255,255,.22);
-  letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:28px;
-}
-.mf-q{
-  font-family:var(--display);
-  font-size:clamp(28px,5vw,66px);
-  line-height:.9;letter-spacing:-.02em;text-transform:uppercase;
-  color:rgba(255,255,255,.88);
-  margin-bottom:32px;
-}
-.mf-q span{color:var(--red)}
-.mf-attr{font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.14em;text-transform:uppercase}
+        .btn-hero:hover {
+            background-color: var(--color-blanco);
+            color: var(--color-negro);
+            transform: scale(1.05);
+        }
 
-/* ═══════════════════════════════════════
-   GALERÍA
-═══════════════════════════════════════ */
-#galeria .gal-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  grid-template-rows:280px 280px;
-  gap:1px;background:var(--ink);
-}
-.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--canvas-2)}
-.gi:nth-child(1){grid-row:1/3}
-.gi img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  filter:grayscale(100%) contrast(1.08);
-  transition:transform .5s var(--e),filter .5s var(--e);
-}
-.gi:hover img{transform:scale(1.04);filter:grayscale(40%)}
-.gi-label{
-  position:absolute;bottom:0;left:0;right:0;
-  background:var(--ink);padding:10px 14px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-top:var(--rule-r);
-  transform:translateY(100%);
-  transition:transform .35s var(--e);
-}
-.gi:hover .gi-label{transform:none}
-.gi-name{font-family:var(--display);font-size:13px;text-transform:uppercase;color:#fff;letter-spacing:.02em}
-.gi-sub{font-size:8px;font-weight:700;color:rgba(255,255,255,.32);letter-spacing:.12em;text-transform:uppercase}
+        /* Secciones Generales */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-/* ═══════════════════════════════════════
-   PORTAL / ACCESO
-═══════════════════════════════════════ */
-#acceso .acc-inner{
-  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);
-  border-top:var(--rule);
-}
-.acc-copy{
-  background:var(--canvas);padding:clamp(40px,6vw,72px) clamp(24px,5vw,56px);
-  border-right:var(--rule);
-}
-.acc-copy h2{
-  font-family:var(--display);font-size:clamp(32px,5vw,56px);
-  text-transform:uppercase;letter-spacing:-.02em;line-height:.9;
-  margin-bottom:28px;
-}
-.acc-copy h2 span{color:var(--red)}
-.acc-lead{font-size:11px;color:var(--ink-faint);line-height:1.75;letter-spacing:.04em;margin-bottom:40px;max-width:380px}
-.feat-list{display:flex;flex-direction:column;gap:0;margin-bottom:40px;border:var(--rule)}
-.feat-row{
-  display:grid;grid-template-columns:52px 1fr;gap:1px;background:var(--ink);
-  border-bottom:var(--rule);
-}
-.feat-row:last-child{border-bottom:none}
-.feat-row>*{background:var(--canvas);padding:12px 14px}
-.feat-ico{
-  display:flex;align-items:center;justify-content:center;
-  border-right:var(--rule);
-  color:var(--red);
-}
-.feat-ico svg{width:16px;height:16px}
-.feat-t{font-size:10px;font-weight:700;color:var(--ink);display:block;margin-bottom:2px;letter-spacing:.06em;text-transform:uppercase}
-.feat-d{font-size:10px;color:var(--ink-faint);letter-spacing:.04em}
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--color-negro);
+            position: relative;
+        }
 
-/* portal card side */
-.portal-panel{
-  background:var(--canvas);padding:clamp(40px,6vw,72px) clamp(24px,5vw,48px);
-}
-.pp-header{
-  display:grid;grid-template-columns:auto 1fr;gap:1px;background:var(--ink);
-  margin-bottom:0;border:var(--rule);
-}
-.pp-header>*{background:var(--canvas);padding:14px 16px}
-.pp-logo-cell{
-  display:flex;align-items:center;justify-content:center;
-  border-right:var(--rule);padding:12px;
-}
-.pp-logo-cell img{width:36px;height:36px;object-fit:contain;filter:grayscale(100%)}
-.pp-title-cell{}
-.pp-title{font-family:var(--display);font-size:16px;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
-.pp-sub{font-size:9px;font-weight:600;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-amarillo);
+            margin: 15px auto 0;
+        }
 
-.pp-rows{border:var(--rule);border-top:none;margin-bottom:0}
-.pp-row{
-  display:grid;grid-template-columns:44px 1fr 64px;gap:1px;background:var(--ink);
-  border-bottom:var(--rule);
-}
-.pp-row:last-child{border-bottom:none}
-.pp-row>*{background:var(--canvas);padding:12px 14px;display:flex;align-items:center}
-.pp-r-ico{justify-content:center;border-right:var(--rule);color:var(--ink-faint)}
-.pp-r-ico svg{width:14px;height:14px}
-.pp-r-t{flex-direction:column;align-items:flex-start;gap:1px}
-.pp-rt{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
-.pp-rd{font-size:9px;color:var(--ink-faint);letter-spacing:.04em}
-.pp-r-status{border-left:var(--rule);justify-content:center}
-.status-ok{width:6px;height:6px;background:#4AF626;border-radius:50%;animation:pulse-green 2s ease-in-out infinite}
-@keyframes pulse-green{0%,100%{opacity:1}50%{opacity:.4}}
+        /* Galería / Cursos */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-.pp-cta{border:var(--rule);border-top:none}
-.pp-cta a{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  padding:16px;background:var(--red);
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:#fff;text-decoration:none;
-  transition:opacity .15s;
-}
-.pp-cta a:hover{opacity:.88}
-.pp-cta a:active{opacity:.72}
+        .card {
+            background-color: var(--color-blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer{background:var(--ink);border-top:var(--rule-r)}
-.ft-manifest{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.ft-col{
-  background:var(--ink);padding:36px 24px;
-}
-.ft-col-hd{
-  font-size:8px;font-weight:700;color:rgba(255,255,255,.2);
-  letter-spacing:.16em;text-transform:uppercase;
-  display:block;margin-bottom:18px;padding-bottom:10px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.ft-brand-name{
-  font-family:var(--display);font-size:28px;
-  text-transform:uppercase;letter-spacing:-.02em;
-  color:#fff;line-height:.9;margin-bottom:12px;
-}
-.ft-brand-sub{font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.12em;text-transform:uppercase;line-height:1.7}
-.ft-col a{
-  display:block;color:rgba(255,255,255,.35);text-decoration:none;
-  font-size:10px;letter-spacing:.06em;text-transform:uppercase;
-  margin-bottom:8px;transition:color .15s;
-}
-.ft-col a:hover{color:rgba(255,255,255,.85)}
-.ft-data p{font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.08em;margin-bottom:6px;line-height:1.6;text-transform:uppercase}
-.ft-data strong{color:rgba(255,255,255,.45)}
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-amarillo);
+        }
 
-.ft-bottom{
-  display:grid;grid-template-columns:1fr auto 1fr;
-  gap:1px;background:rgba(255,255,255,.06);
-}
-.ft-bottom>*{
-  background:var(--ink);padding:12px 24px;
-  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.2);display:flex;align-items:center;
-}
-.ft-copy-r{justify-content:flex-end}
-.ft-copy-c{justify-content:center;color:var(--red);font-weight:700}
+        .card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
 
-/* ═══════════════════════════════════════
-   REVEALS
-═══════════════════════════════════════ */
-.js-on .reveal{
-  opacity:0;transform:translateY(20px);
-  transition:opacity .7s var(--e) var(--rd,0s),transform .7s var(--e) var(--rd,0s);
-}
-.js-on .reveal.in{opacity:1;transform:none}
-.js-on .reveal[data-d="1"]{--rd:.08s}
-.js-on .reveal[data-d="2"]{--rd:.16s}
-.js-on .reveal[data-d="3"]{--rd:.24s}
+        .card-content {
+            padding: 20px;
+        }
 
-section[id]{scroll-margin-top:52px}
-:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--color-negro);
+        }
 
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
-@media(max-width:1060px){
-  .pgm-grid{grid-template-columns:repeat(3,1fr)}
-  .pgm-cell:nth-child(n+4){display:none}
-  #galeria .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px}
-  .gi:nth-child(1){grid-row:auto}
-  .acc-inner{grid-template-columns:1fr}
-  .ft-manifest{grid-template-columns:1fr 1fr}
-}
-@media(max-width:860px){
-  .hero-body{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .hero-meta{grid-template-columns:1fr 1fr}
-  .hero-foot{grid-template-columns:1fr 1fr}
-  #nav .nav-links{display:none}
-  .sec-header{grid-template-columns:60px 1fr}
-  .sec-meta{display:none}
-  .mf-wrap{grid-template-columns:1fr}
-  .mf-marker{display:none}
-  .mf-body{padding:0}
-}
-@media(max-width:560px){
-  h1{font-size:clamp(72px,18vw,130px)}
-  .pgm-grid{grid-template-columns:1fr 1fr}
-  .pgm-cell:nth-child(n+4){display:flex}
-  #galeria .gal-grid{grid-template-columns:1fr;grid-template-rows:repeat(6,180px)}
-  .ft-manifest{grid-template-columns:1fr}
-  .ft-bottom{grid-template-columns:1fr}
-  .ft-copy-r,.ft-copy-c{justify-content:flex-start}
-}
+        .card-text {
+            color: #555;
+            margin-bottom: 20px;
+        }
 
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  html{scroll-behavior:auto}
-  .js-on .reveal{opacity:1!important;transform:none!important;transition:none!important}
-}
-  </style>
+        .btn-card {
+            display: inline-block;
+            color: var(--color-negro);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid var(--color-amarillo);
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .btn-card:hover {
+            color: var(--color-amarillo);
+        }
+
+        /* Sobre Nosotros */
+        .about-section {
+            background-color: var(--color-gris-claro);
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--color-negro);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-negro);
+            color: var(--color-blanco);
+            padding: 50px 20px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--color-amarillo);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--color-amarillo);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="noise" aria-hidden="true"></div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <!-- Asegúrate de que esta imagen exista en tu carpeta -->
+                <img src="Ceart imagenes/logo.jpeg" alt="Logo CEART" class="logo-img">
+                <span style="color: var(--color-blanco); font-weight: bold; font-size: 1.5rem;">CEART</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="login.html" class="btn-login">Ingresar</a>
+        </nav>
+    </header>
 
-<!-- ══════════════════════════════
-     NAV
-══════════════════════════════ -->
-<nav id="nav" role="navigation" aria-label="Navegación principal">
-  <div class="nav-id">CEART / D-01 / REV 4.0</div>
-  <div class="nav-links">
-    <a href="#programas" class="nav-a">[ Programas ]</a>
-    <a href="#acceso"    class="nav-a">[ Portal ]</a>
-    <a href="#galeria"   class="nav-a">[ Galería ]</a>
-  </div>
-  <div class="nav-r">
-    <a href="login.html" class="nav-cta">Acceder &gt;&gt;</a>
-  </div>
-</nav>
-
-<!-- ══════════════════════════════
-     HERO
-══════════════════════════════ -->
-<section id="hero">
-  <!-- metadata strip -->
-  <div class="hero-meta">
-    <div class="hero-meta-cell">
-      <span>Institución</span>
-      <strong>Centro Educativo y Artístico</strong>
-    </div>
-    <div class="hero-meta-cell">
-      <span>Ubicación</span>
-      <strong>Chilpancingo, Guerrero</strong>
-    </div>
-    <div class="hero-meta-cell">
-      <span>Programas activos</span>
-      <strong>05 / 05</strong>
-    </div>
-    <div class="hero-meta-cell red-cell">
-      <span>Estado</span>
-      <strong>/// INSCRIPCIONES ABIERTAS</strong>
-    </div>
-  </div>
-
-  <!-- body -->
-  <div class="hero-body">
-    <div class="hero-left">
-      <div>
-        <p class="hero-label">Johann Sebastian Bach</p>
-        <h1>CEART</h1>
-      </div>
-      <div>
-        <div class="hero-sub-block">
-          <div class="hero-sub-name">Música · Arte · Educación</div>
-          <div class="hero-sub-desc">
-            Guitarra &nbsp;/&nbsp; Piano &nbsp;/&nbsp; Canto &nbsp;/&nbsp; Batería &nbsp;/&nbsp; Violín<br/>
-            Clases individuales y grupales — todos los niveles
-          </div>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Centro de Artes</h1>
+            <p>Descubre tu potencial creativo en nuestras instalaciones de vanguardia. Música, danza, teatro y artes visuales te esperan.</p>
+            <a href="#cursos" class="btn-hero">Ver Cursos</a>
         </div>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-coords">
-        <div>
-          <span class="coord-label">LAT</span>
-          <span class="coord-val">17.5506° N</span>
+    </section>
+
+    <!-- Cursos / Galería -->
+    <section id="cursos">
+        <h2 class="section-title">Nuestras Disciplinas</h2>
+        <div class="gallery-grid">
+            <!-- Tarjeta 1 -->
+            <div class="card">
+                <img src="Ceart imagenes/649543842_18164087686412828_355138816146051872_n.jpg" alt="Música" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Música</h3>
+                    <p class="card-text">Clases de instrumentos, teoría musical y ensambles para todos los niveles.</p>
+                    <a href="#" class="btn-card">Más información →</a>
+                </div>
+            </div>
+            <!-- Tarjeta 2 -->
+            <div class="card">
+                <img src="Ceart imagenes/650026575_18164087722412828_1002517658578063833_n.jpg" alt="Danza" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Danza</h3>
+                    <p class="card-text">Ballet, contemporáneo, folklórico y más. Expresa tu cuerpo en movimiento.</p>
+                    <a href="#" class="btn-card">Más información →</a>
+                </div>
+            </div>
+            <!-- Tarjeta 3 -->
+            <div class="card">
+                <img src="Ceart imagenes/657931227_18166184038412828_7223583108806769500_n.jpg" alt="Teatro" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Teatro</h3>
+                    <p class="card-text">Actuación, escenografía y producción teatral. Sube al escenario con nosotros.</p>
+                    <a href="#" class="btn-card">Más información →</a>
+                </div>
+            </div>
+             <!-- Tarjeta 4 -->
+             <div class="card">
+                <img src="Ceart imagenes/658152097_122199475790904862_8501085392109851329_n.jpg" alt="Artes Visuales" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Artes Visuales</h3>
+                    <p class="card-text">Pintura, escultura, fotografía y diseño. Da forma a tu imaginación.</p>
+                    <a href="#" class="btn-card">Más información →</a>
+                </div>
+            </div>
         </div>
-        <div>
-          <span class="coord-label">LON</span>
-          <span class="coord-val">99.5009° W</span>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <div class="about-section">
+        <section id="nosotros">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="Ceart imagenes/661556120_18167351425412828_3931148404765639004_n.jpg" alt="Instalaciones CEART">
+                </div>
+                <div class="about-text">
+                    <h2>Sobre CEART</h2>
+                    <p>Somos un centro dedicado al fomento y desarrollo de las artes. Contamos con instalaciones modernas y un equipo de profesionales apasionados por la enseñanza artística.</p>
+                    <br>
+                    <p>Nuestro objetivo es proporcionar un espacio donde la creatividad florezca y cada estudiante pueda desarrollar su máximo potencial artístico en un ambiente inclusivo y estimulante.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>CEART</h3>
+                <p>Centro de Artes para el desarrollo cultural y creativo de la comunidad.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="login.html">Acceso Alumnos</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>📍 Calle Principal #123</li>
+                    <li>📞 (555) 123-4567</li>
+                    <li>✉️ contacto@ceart.edu</li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="hero-crosshair">
-        <div class="cross-center">
-          <div class="cross-ring"></div>
+        <div class="copyright">
+            <p>&copy; 2024 CEART. Todos los derechos reservados.</p>
         </div>
-      </div>
-      <div class="hero-cta-block">
-        <a href="#programas" class="btn-primary">Ver programas &gt;&gt;</a>
-        <a href="login.html" class="btn-secondary">[ Portal ] &rarr;</a>
-      </div>
-    </div>
-  </div>
+    </footer>
 
-  <!-- footer strip -->
-  <div class="hero-foot">
-    <div class="hf-ref">CEART-MX &mdash; CHI-GRO-001</div>
-    <div></div>
-    <div class="hf-sch">/// INSCRIPCIONES ABIERTAS</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     TICKER
-══════════════════════════════ -->
-<div class="ticker-band" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="tick-item"><span class="tick-sep">//</span> GUITARRA</span>
-    <span class="tick-item"><span class="tick-sep">//</span> PIANO</span>
-    <span class="tick-item"><span class="tick-sep">//</span> CANTO</span>
-    <span class="tick-item"><span class="tick-sep">//</span> BATERÍA</span>
-    <span class="tick-item"><span class="tick-sep">//</span> VIOLÍN</span>
-    <span class="tick-item"><span class="tick-sep">//</span> BACH</span>
-    <span class="tick-item"><span class="tick-sep">//</span> CHILPANCINGO, GRO</span>
-    <span class="tick-item"><span class="tick-sep">//</span> GUITARRA</span>
-    <span class="tick-item"><span class="tick-sep">//</span> PIANO</span>
-    <span class="tick-item"><span class="tick-sep">//</span> CANTO</span>
-    <span class="tick-item"><span class="tick-sep">//</span> BATERÍA</span>
-    <span class="tick-item"><span class="tick-sep">//</span> VIOLÍN</span>
-    <span class="tick-item"><span class="tick-sep">//</span> BACH</span>
-    <span class="tick-item"><span class="tick-sep">//</span> CHILPANCINGO, GRO</span>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     MANIFESTO
-══════════════════════════════ -->
-<section id="manifesto" class="sec reveal">
-  <div class="mf-wrap">
-    <div class="mf-marker">
-      <div class="mf-marker-line"></div>
-      <span class="mf-marker-lbl">BACH</span>
-    </div>
-    <div class="mf-body">
-      <span class="mf-tag">[ DECLARACIÓN ] &mdash; UNIDAD D-01</span>
-      <p class="mf-q">LA ESCUELA LLEVA<br/>EL NOMBRE DE BACH.<br/><span>LA MÚSICA<br/>LLEVA EL TUYO.</span></p>
-      <span class="mf-attr">CEART &mdash; CHILPANCINGO, GUERRERO &mdash; MX</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     PROGRAMAS
-══════════════════════════════ -->
-<section id="programas" class="sec">
-  <div class="sec-header reveal">
-    <div class="sec-idx">02</div>
-    <div class="sec-title">Programas</div>
-    <div class="sec-meta">[ 01 — 05 ] / Activos</div>
-  </div>
-  <div class="pgm-grid">
-    <div class="pgm-cell reveal">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/guitar-warm/440/330" alt="Guitarra"/>
-      <div class="pgm-cell-body">
-        <span class="pgm-num">// 01 &mdash; GUITARRA</span>
-        <div class="pgm-name">Gui-<br/>tarra</div>
-        <p class="pgm-desc">Clásica y eléctrica. Desde los primeros acordes hasta técnicas avanzadas de armonía.</p>
-        <div class="pgm-bar"><div class="pgm-fill"></div></div>
-      </div>
-    </div>
-    <div class="pgm-cell reveal" data-d="1">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/piano-warm/440/330" alt="Piano"/>
-      <div class="pgm-cell-body">
-        <span class="pgm-num">// 02 &mdash; PIANO</span>
-        <div class="pgm-name">Piano</div>
-        <p class="pgm-desc">Técnica, teoría y repertorio musical completo. Todos los niveles.</p>
-        <div class="pgm-bar"><div class="pgm-fill"></div></div>
-      </div>
-    </div>
-    <div class="pgm-cell reveal" data-d="2">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/vocal-ceart/440/330" alt="Canto"/>
-      <div class="pgm-cell-body">
-        <span class="pgm-num">// 03 &mdash; CANTO</span>
-        <div class="pgm-name">Canto</div>
-        <p class="pgm-desc">Técnica vocal, respiración, proyección y repertorio para todos los géneros.</p>
-        <div class="pgm-bar"><div class="pgm-fill"></div></div>
-      </div>
-    </div>
-    <div class="pgm-cell reveal" data-d="1">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/drums-ceart/440/330" alt="Batería"/>
-      <div class="pgm-cell-body">
-        <span class="pgm-num">// 04 &mdash; BATERÍA</span>
-        <div class="pgm-name">Bate-<br/>ría</div>
-        <p class="pgm-desc">Ritmo, coordinación, rudimentos y ensamble. Estilos variados.</p>
-        <div class="pgm-bar"><div class="pgm-fill"></div></div>
-      </div>
-    </div>
-    <div class="pgm-cell reveal" data-d="2">
-      <img class="pgm-cell-img" src="https://picsum.photos/seed/violin-ceart/440/330" alt="Violín"/>
-      <div class="pgm-cell-body">
-        <span class="pgm-num">// 05 &mdash; VIOLÍN</span>
-        <div class="pgm-name">Violín</div>
-        <p class="pgm-desc">Postura, afinación, arco y repertorio clásico desde los fundamentos.</p>
-        <div class="pgm-bar"><div class="pgm-fill"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     GALERÍA
-══════════════════════════════ -->
-<section id="galeria" class="sec">
-  <div class="sec-header reveal">
-    <div class="sec-idx">03</div>
-    <div class="sec-title">Galería</div>
-    <div class="sec-meta">[ ARCHIVO VISUAL ]</div>
-  </div>
-  <div class="gal-grid reveal" data-d="1">
-    <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-main/800/600" alt="Estudio principal"/>
-      <div class="gi-label">
-        <span class="gi-name">Estudio Principal</span>
-        <span class="gi-sub">// Clases</span>
-      </div>
-    </div>
-    <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-stage/800/600" alt="Recitales"/>
-      <div class="gi-label">
-        <span class="gi-name">Recitales</span>
-        <span class="gi-sub">// Mensual</span>
-      </div>
-    </div>
-    <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-guitar2/800/600" alt="Guitarra"/>
-      <div class="gi-label">
-        <span class="gi-name">Guitarra</span>
-        <span class="gi-sub">// Niveles</span>
-      </div>
-    </div>
-    <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-piano2/800/600" alt="Piano"/>
-      <div class="gi-label">
-        <span class="gi-name">Piano</span>
-        <span class="gi-sub">// Semanal</span>
-      </div>
-    </div>
-    <div class="gi">
-      <img src="https://picsum.photos/seed/ceart-ensemble/800/600" alt="Ensamble"/>
-      <div class="gi-label">
-        <span class="gi-name">Ensamble</span>
-        <span class="gi-sub">// Conjunto</span>
-      </div>
-    </div>
-    <div class="gi" style="background:var(--ink);display:flex;align-items:center;justify-content:center;padding:24px">
-      <div style="text-align:center">
-        <div style="font-family:var(--display);font-size:clamp(28px,4vw,48px);color:#fff;text-transform:uppercase;letter-spacing:-.02em;line-height:.9;margin-bottom:14px">Inscríbete<br/>hoy</div>
-        <a href="login.html" style="display:inline-block;padding:10px 22px;background:var(--red);color:#fff;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">&gt;&gt; Portal</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     PORTAL / ACCESO
-══════════════════════════════ -->
-<section id="acceso" class="sec">
-  <div class="sec-header reveal">
-    <div class="sec-idx">04</div>
-    <div class="sec-title">Portal de Acceso</div>
-    <div class="sec-meta">[ ALUMNOS / MAESTROS ]</div>
-  </div>
-  <div class="acc-inner">
-    <div class="acc-copy reveal">
-      <h2>Tu escuela.<br/><span>Siempre</span><br/>contigo.</h2>
-      <p class="acc-lead">Consulta horarios, sigue tu progreso y mantente conectado con tu comunidad musical desde cualquier dispositivo.</p>
-      <div class="feat-list">
-        <div class="feat-row">
-          <div class="feat-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="15" rx="1"/><path d="M6 1v4M14 1v4M2 8h16"/></svg></div>
-          <div><span class="feat-t">Horarios y clases</span><span class="feat-d">Consulta tu agenda y recibe recordatorios</span></div>
-        </div>
-        <div class="feat-row">
-          <div class="feat-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,14 7,8 12,12 18,5"/></svg></div>
-          <div><span class="feat-t">Seguimiento de progreso</span><span class="feat-d">Avances y observaciones de tus maestros</span></div>
-        </div>
-        <div class="feat-row">
-          <div class="feat-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="5" width="18" height="12" rx="1"/><path d="M1 9h18"/></svg></div>
-          <div><span class="feat-t">Pagos y facturación</span><span class="feat-d">Historial de colegiaturas y comprobantes</span></div>
-        </div>
-      </div>
-      <a href="login.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;width:fit-content;padding:14px 24px">
-        &gt;&gt; Entrar al portal
-      </a>
-    </div>
-
-    <div class="portal-panel reveal" data-d="2">
-      <div class="pp-header">
-        <div class="pp-logo-cell"><img src="assets/logo.jpg" alt="CEART"/></div>
-        <div class="pp-title-cell">
-          <div class="pp-title">CEART</div>
-          <div class="pp-sub">Portal de alumnos y maestros</div>
-        </div>
-      </div>
-      <div class="pp-rows">
-        <div class="pp-row">
-          <div class="pp-r-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="6" r="4"/><path d="M2 19c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
-          <div class="pp-r-t"><span class="pp-rt">Mi perfil</span><span class="pp-rd">Información personal y estado de cuenta</span></div>
-          <div class="pp-r-status"><span class="status-ok"></span></div>
-        </div>
-        <div class="pp-row">
-          <div class="pp-r-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="15" rx="1"/><path d="M6 1v4M14 1v4M2 8h16M6 13h5"/></svg></div>
-          <div class="pp-r-t"><span class="pp-rt">Próxima clase</span><span class="pp-rd">Lunes · 16:00 · Guitarra</span></div>
-          <div class="pp-r-status"><span class="status-ok"></span></div>
-        </div>
-        <div class="pp-row">
-          <div class="pp-r-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M11 2v6h6M7 13h6M7 10h4"/></svg></div>
-          <div class="pp-r-t"><span class="pp-rt">Material del curso</span><span class="pp-rd">3 archivos nuevos disponibles</span></div>
-          <div class="pp-r-status"><span class="status-ok"></span></div>
-        </div>
-      </div>
-      <div class="pp-cta">
-        <a href="login.html">&gt;&gt; INICIAR SESIÓN</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     FOOTER
-══════════════════════════════ -->
-<footer>
-  <div class="ft-manifest">
-    <div class="ft-col">
-      <span class="ft-col-hd">// UNIDAD</span>
-      <div class="ft-brand-name">CEART</div>
-      <p class="ft-brand-sub">Centro Educativo<br/>y Artístico<br/>Johann Sebastian Bach</p>
-    </div>
-    <div class="ft-col">
-      <span class="ft-col-hd">// PROGRAMAS</span>
-      <a href="#programas">// 01 — Guitarra</a>
-      <a href="#programas">// 02 — Piano</a>
-      <a href="#programas">// 03 — Canto</a>
-      <a href="#programas">// 04 — Batería</a>
-      <a href="#programas">// 05 — Violín</a>
-    </div>
-    <div class="ft-col">
-      <span class="ft-col-hd">// PORTAL</span>
-      <a href="login.html">Iniciar sesión</a>
-      <a href="login.html">Portal de alumnos</a>
-      <a href="login.html">Portal de maestros</a>
-    </div>
-    <div class="ft-col ft-data">
-      <span class="ft-col-hd">// DATOS TÉCNICOS</span>
-      <p><strong>LAT</strong> 17.5506° N</p>
-      <p><strong>LON</strong> 99.5009° W</p>
-      <p><strong>LOC</strong> Chilpancingo, GRO</p>
-      <p><strong>REV</strong> 4.0 / 2026</p>
-      <p><strong>SYS</strong> D-01 / ACTIVO</p>
-    </div>
-  </div>
-  <div class="ft-bottom">
-    <div>&copy; 2026 CEART &mdash; Johann Sebastian Bach</div>
-    <div class="ft-copy-c">[ Arte · Música · Educación ]</div>
-    <div class="ft-copy-r">Chilpancingo, Guerrero, México</div>
-  </div>
-</footer>
-
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-<script>
-// ── LENIS ──
-const lenis = new Lenis({ duration: 1.1, easing: t => 1 - Math.pow(2, -10 * t) });
-function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-
-// ── REVEALS ──
-document.documentElement.classList.add('js-on');
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-
-// ── NAV active spy ──
-const spy = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      document.querySelectorAll('.nav-a').forEach(a =>
-        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)
-      );
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px' });
-document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
-
-// ── SERVICE WORKER ──
-if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
-</script>
 </body>
 </html>
